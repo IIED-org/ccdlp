@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the IALP settings feature.
+ */
+
+include_once 'ialp_settings.features.inc';

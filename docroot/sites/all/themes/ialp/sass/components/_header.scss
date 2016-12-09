@@ -1,0 +1,66 @@
+/**
+ * @file
+ * Branding header.
+ */
+
+/* Wrapping link for logo. */
+.header__logo {
+  float: left; /* LTR */
+  margin: 0 1em 0 0;
+  padding: 0;
+}
+
+/* Logo image. */
+.header__logo-image {
+  vertical-align: bottom;
+}
+
+.header__logo-image {
+  &:hover, &:focus, &:active {
+    background: white;
+  }
+}
+
+/* Wrapper for website name and slogan. */
+.header__name-and-slogan {
+  float: left;
+}
+
+/* The name of the website. */
+.header__site-name {
+  margin: .5em 0;
+  font-size: 23px;
+  font-weight: normal;
+}
+
+/* The link around the name of the website. */
+.header__site-link {
+  &:link,
+  &:visited {
+    color: $blue;
+    text-decoration: none;
+    text-transform: uppercase; 
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    background: white;
+  }
+}
+
+/* The slogan (or tagline) of a website. */
+.header__site-slogan {
+  margin: 0;
+}
+
+/* The secondary menu (login, etc.) */
+.header__secondary-menu {
+  float: right; /* LTR */
+}
+
+/* Wrapper for any blocks placed in the header region. */
+.header__region {
+  /* Clear the logo. */
+  clear: both;
+}

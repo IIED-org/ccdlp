@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Blocks.
+ */
+
+/* Block wrapper. */
+.block {
+  margin-bottom: rhythm(1);
+}
+
+/* Block title. */
+.block__title {
+  margin: 0;
+}
+
+/* Sidebar blocks */
+
+.sidebar .block__title {
+  border-top: solid 2px $grey;
+  margin-bottom: 1rem;
+}

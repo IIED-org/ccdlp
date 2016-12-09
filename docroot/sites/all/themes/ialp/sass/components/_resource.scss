@@ -1,0 +1,11 @@
+/* resources content type */
+
+.field-name-download-button, .region-sidebar-first .field-name-field-link {
+   text-align: center;
+   margin: 1em 0;
+}
+.download, .region-sidebar-first .field-name-field-link .field-item a {
+  text-decoration: none;
+  padding: .5em;
+  border: solid 1px $green;
+}

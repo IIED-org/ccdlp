@@ -1,0 +1,82 @@
+// #block-search-form,
+// #block-search-api-page-search-api, 
+//#block-custom-search-blocks-1,
+#searchme {
+  display: inline-block; 
+  float: right;
+  a, img
+  {
+    vertical-align: middle;
+  }
+}
+
+a#searchme:hover, a#searchme:active {
+  background-color: transparent;
+}
+
+.current-search-item-active-items,
+.current-search-item-results {
+    display: inline-block;
+    div, ul, li {
+      display: inline;
+    }
+}
+
+/* Views exposed form */
+
+#edit-submit-advanced-forum-search{
+  margin-top: 0;
+}
+
+/* Facet multiselect */
+
+.no-radius, .no-radius .ui-corner-all {
+    border-radius: 0 !important;
+}
+
+.ui-multiselect-menu {
+  max-width:66%;
+}
+
+/* Sliding search menu */
+
+.mm-menu {
+  width: 90%;
+}
+
+nav.mm-menu.mm-fresh.mm-vertical li.mm-opened > ul,
+nav.mm-menu.mm-fresh > .mm-list {
+  padding: 0;
+  margin: 0;
+}
+
+.mm-menu.mm-vertical .mm-list .mm-panel {
+  display: block;
+}
+
+/* Search results */
+
+.view-mode-search_result, .view-mode-teaser {
+  .field-name-thumbnail,
+  .field-name-field-cover-image, 
+  .field-name-field-material-type, 
+  .field-name-field-no-of-pages,
+  .field-name-field-author-s-,
+  .field-name-field-file
+   {
+     @extend .field-name-ds-user-picture; // In _misc.scss
+  }
+  .field-name-field-material-type, 
+  .field-name-field-no-of-pages,
+  .field-name-field-author-s- {
+    width: auto !important;
+  }
+}
+
+
+
+.view-mode-search_result, .view-mode-teaser {
+   .field-name-title h2 {
+     margin-top: 0;
+   }
+}

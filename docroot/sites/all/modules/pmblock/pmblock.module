@@ -1,0 +1,53 @@
+<?php
+/**
+ * Implements hook_block_info().
+ */
+function pmblock_block_info() {
+  $blocks = array();
+  $blocks['pmessages_list'] = array(
+    'info' => t('Messages List'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['pmessages_sent'] = array(
+    'info' => t('Sent Messages'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['new_message'] = array(
+    'info' => t('New Private Message'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+
+require_once('sites/all/modules/privatemsg/privatemsg.pages.inc');
+function pmblock_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'pmessages_list':
+      global $user;
+      $block['subject'] = t('Private Messages');
+      $block['content'] = 
+        drupal_get_form('privatemsg_list', 'list', $user);
+      break;
+
+    case 'pmessages_sent':
+      global $user;
+      $block['subject'] = t('Private Sent Messages');
+      $block['content'] = 
+        drupal_get_form('privatemsg_list', 'sent', $user);
+      break;
+    case 'new_message':
+      $block['subject'] = t('New Private Message');
+      $stored_title = drupal_set_title();
+      $block['content'] = drupal_get_form('privatemsg_new');
+      drupal_set_title($stored_title);
+     break;
+  }
+  return $block;
+}
+
+?>

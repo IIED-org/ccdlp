@@ -1,0 +1,57 @@
+/**
+ * @file
+ * Buttons.
+ */
+
+/* Buttons used by contrib modules like Media. */
+a.button {
+  @include appearance(button);
+}
+
+/* Action buttons */
+
+.buttons { 
+  position: relative;
+  margin-top: 1rem;
+  div {
+  	height: 48px;
+  	background: $higrey;
+  	float:left;
+  	margin: 0 10px 10px 10px;
+  	text-align:center;
+  	display: table;
+    @include border-radius(5px);
+    border: solid 1px $higrey;
+    &:hover, a:hover {
+      color: $grey;
+      background: #FFFFFF;
+    }
+  a {
+  	display:block;
+  	width: 100%;
+  	height: 100%;
+
+  }
+  img {
+  	vertical-align: middle;
+  	height: 46px;
+  	width: 46px;
+  	padding: 0 5px;
+  }
+  .user span {
+    display: inline-block;
+    img {
+      height: 38px;
+      width: 38px;
+    }
+  }
+  p {
+  	font-size: 16px;
+  	line-height: 1em;
+  	display: table-cell;
+  	vertical-align: middle;
+  	padding-top: 2px;
+  }
+  
+ }
+}

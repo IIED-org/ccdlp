@@ -1,0 +1,24 @@
+diff --git a/invite.install b/invite.install
+index e591fcc..f13ef0b 100644
+--- a/invite.install
++++ b/invite.install
+@@ -223,16 +223,16 @@ function invite_update_7401() {
+   }
+ 
+   // Add status field to invite table
+-  $specs = [
++  $specs = array(
+     'type' => 'int',
+     'not null' => TRUE,
+     'description' => 'Invitation status.',
+     'default' => 1,
+     'initial' => 1,
+-  ];
++  );
+   db_add_field('invite', 'status', $specs);
+ 
+-  // Calculate and store invite status from exisiting data.
++  // Calculate and store invite status from existing data.
+   $invites = db_select('invite', 'i')
+     ->fields('i', array('iid', 'created', 'canceled', 'joined', 'expiry'))
+     ->execute();
