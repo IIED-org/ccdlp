@@ -56,7 +56,9 @@ DirectoryIndex index.php index.html index.htm
 <IfModule mod_rewrite.c>
   RewriteEngine on
   # Set protocol to https 
-  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
  
  # Set "protossl" to "s" if we were accessed via https://.  This is used later
