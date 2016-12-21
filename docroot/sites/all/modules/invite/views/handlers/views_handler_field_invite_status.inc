@@ -11,12 +11,10 @@
  * @ingroup views_field_handlers
  */
 class views_handler_field_invite_status extends views_handler_field {
-
-  public function render($values) {
+  function render($values) {
     $value = $this->get_value($values);
 
     $options = invite_get_status_options();
     return $options[$value];
   }
-
 }

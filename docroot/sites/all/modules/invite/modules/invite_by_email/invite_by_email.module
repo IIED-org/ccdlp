@@ -52,7 +52,7 @@ function invite_by_email_form_invite_type_form_alter(&$form, &$form_state, $invi
     '#states' => array(
       'invisible' => array(
         ':input[name="invite_sending_controller[invite_by_email]"]' => array('checked' => FALSE),
-      ),
+      )
     ),
   );
 
@@ -104,7 +104,7 @@ function invite_by_email_form_invite_type_form_alter(&$form, &$form_state, $invi
     ),
   );
 
-  // Put our submit in top of list to ensure, that values will be added to 'data'.
+  // Put our submit in top of list to ensure, that values will be added to 'data'
   array_unshift($form['#submit'], 'invite_by_email_form_invite_type_form_submit');
 }
 
@@ -176,12 +176,10 @@ function invite_by_email_invite_presave($invite) {
 
 /**
  * Implements hook_form_alter().
- *
  * @todo: refactor. There should be better way to alter default settings.
  *
  * @param $form
  * @param $form_state
- *
  * @return bool
  */
 function invite_by_email_form_alter(&$form, &$form_state) {
@@ -223,11 +221,10 @@ function invite_by_email_invite_send($invite) {
 /**
  * Implements sending_controller_send_invitation function.
  *
- * The invitation email is sent to the invitee.
+ * The invitation email is sent to the invitee
  *
  * @param $invite
  *   Invite object.
- *
  * @return
  *   TRUE, if sending was successful; FALSE otherwise..
  */
@@ -323,7 +320,7 @@ function invite_by_email_form_invite_form_alter(&$form, &$form_state, $form_id) 
     else {
       // Add token help if enabled.
       if (module_exists('token') && $replace_tokens) {
-        // Add tokens help.
+        // Add tokens help
         $form['token_help'] = array(
           '#title' => t('Replacement patterns'),
           '#type' => 'fieldset',

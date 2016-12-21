@@ -1,0 +1,39 @@
+/**
+ * @file
+ * Inline styles.
+ */
+
+.inline-field-label,
+%inline-field-label {
+  display: inline;
+  padding: 0 1em 0 0; /* LTR */
+}
+
+.inline-links,
+%inline-links {
+  display: inline;
+  padding: 0;
+}
+
+.inline-links__item,
+%inline-links__item {
+  display: inline;
+  list-style-type: none;
+  padding: 0 1em 0 0; /* LTR */
+}
+
+
+// Drupal selectors.
+
+/* The inline field label used by the Fences module. */
+span.field-label {
+  @extend %inline-field-label;
+}
+
+.inline {
+  @extend %inline-links;
+
+  li {
+    @extend %inline-links__item;
+  }
+}

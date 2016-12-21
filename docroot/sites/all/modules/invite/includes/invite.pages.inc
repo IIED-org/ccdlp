@@ -89,22 +89,18 @@ function invite_accept($invite) {
  * Menu callback; resend an expired invite.
  *
  * @param Invite $invite
- *   An invite object.
+ *   An invitate object.
  *
- * @return array
+ * @return Array
  *   renderable array, representing a page.
  */
 function invite_resend($invite) {
-  if ($invite->sendInvite()) {
-    drupal_set_message(t('Invitation has been successfully resent.'));
+  $invite->sendInvite();
 
-    return array(
-      'invite' => entity_view('invite', array(entity_id('invite', $invite) => $invite), 'full'),
-    );
-  }
-  else {
-    return MENU_NOT_FOUND;
-  }
+  return array(
+    'message' => t('Invitation has been sucessfully resent.'),
+    'invite' => entity_view('invite', array(entity_id('invite', $invite) => $invite), 'full'),
+  );
 }
 
 /**
@@ -114,7 +110,6 @@ function invite_resend($invite) {
  * @param $form_state
  * @param Invite $invite
  *   Invite object.
- *
  * @return array
  */
 function invite_withdraw_form($form, &$form_state, $invite) {
@@ -125,7 +120,7 @@ function invite_withdraw_form($form, &$form_state, $invite) {
     '#value' => $invite,
   );
   $invite_render_tree = entity_view('invite', array(entity_id('invite', $invite) => $invite), 'full');
-  $description = (!$invite->joined && $invite->expiry > REQUEST_TIME) ? t('The invitee will no longer be able to register using this invitation !invite<br/>', array('!invite' => drupal_render($invite_render_tree))) : '';
+  $description = (!$invite->joined && $invite->expiry > REQUEST_TIME) ? t('The invitee no longer be able to register using this invitation !invite<br/>', array('!invite' => drupal_render($invite_render_tree))) : '';
   $redirect = !empty($_REQUEST['destination']) ? $_REQUEST['destination'] : '<front>';
 
   return confirm_form(
@@ -165,3 +160,4 @@ function invite_withdraw_form_submit($form, &$form_state) {
 
   $form_state['redirect'] = '<front>';
 }
+

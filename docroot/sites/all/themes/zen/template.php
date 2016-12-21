@@ -17,8 +17,6 @@ if (theme_get_setting('zen_rebuild_registry') && !defined('MAINTENANCE_MODE')) {
   system_rebuild_theme_data();
   // Rebuild theme registry.
   drupal_theme_rebuild();
-  // Turn on template debugging.
-  $GLOBALS['conf']['theme_debug'] = TRUE;
 }
 
 
@@ -31,51 +29,6 @@ function zen_theme(&$existing, $type, $theme, $path) {
 }
 
 /**
- * Override or insert variables for the breadcrumb theme function.
- *
- * @param $variables
- *   An array of variables to pass to the theme function.
- * @param $hook
- *   The name of the theme hook being called ("breadcrumb" in this case).
- *
- * @see zen_breadcrumb()
- */
-function zen_preprocess_breadcrumb(&$variables, $hook) {
-  // Define variables for the breadcrumb-related theme settings. This is done
-  // here so that sub-themes can dynamically change the settings under
-  // particular conditions in a preprocess function of their own.
-  $variables['display_breadcrumb'] = check_plain(theme_get_setting('zen_breadcrumb'));
-  $variables['display_breadcrumb'] = ($variables['display_breadcrumb'] == 'yes' || $variables['display_breadcrumb'] == 'admin' && arg(0) == 'admin') ? TRUE : FALSE;
-  $variables['breadcrumb_separator'] = filter_xss_admin(theme_get_setting('zen_breadcrumb_separator'));
-  $variables['display_trailing_separator'] = theme_get_setting('zen_breadcrumb_trailing') ? TRUE : FALSE;
-
-  // Optionally get rid of the homepage link.
-  if (!theme_get_setting('zen_breadcrumb_home')) {
-    array_shift($variables['breadcrumb']);
-  }
-
-  // Add the title of the page to the end of the breadcrumb list.
-  if (theme_get_setting('zen_breadcrumb_title')) {
-    $item = menu_get_item();
-    if (!empty($item['tab_parent'])) {
-      // If we are on a non-default tab, use the tab's title.
-      $variables['breadcrumb'][] = check_plain($item['title']);
-    }
-    else {
-      $variables['breadcrumb'][] = drupal_get_title();
-    }
-    // Turn off the trailing separator.
-    $variables['display_trailing_separator'] = FALSE;
-  }
-
-  // Provide a navigational heading to give context for breadcrumb links to
-  // screen-reader users.
-  if (empty($variables['title'])) {
-    $variables['title'] = t('You are here');
-  }
-}
-
-/**
  * Return a themed breadcrumb trail.
  *
  * @param $variables
@@ -84,32 +37,57 @@ function zen_preprocess_breadcrumb(&$variables, $hook) {
  *   - title_attributes_array: Array of HTML attributes for the title. It is
  *     flattened into a string within the theme function.
  *   - breadcrumb: An array containing the breadcrumb links.
- *   - display_breadcrumb: A boolean indicating whether the breadcrumbs should
- *     be displayed.
- *   - breadcrumb_separator: A string representing the text to be used as the
- *     breadcrumb separator.
- *   - display_trailing_separator: A boolean indicating whether a trailing
- *     seperator should be added at the end of the breadcrumbs.
- *
  * @return
  *   A string containing the breadcrumb output.
  */
 function zen_breadcrumb($variables) {
+  $breadcrumb = $variables['breadcrumb'];
   $output = '';
 
   // Determine if we are to display the breadcrumb.
-  if ($variables['display_breadcrumb'] && !empty($variables['breadcrumb'])) {
-    $variables['title_attributes_array']['class'][] = 'breadcrumb__title';
-    $separator = '<span class="breadcrumb__separator">' . $variables['breadcrumb_separator'] . '</span>';
-    // Build the breadcrumb trail.
-    $output = '<nav class="breadcrumb" role="navigation">';
-    $output .= '<h2' . drupal_attributes($variables['title_attributes_array']) . '>' . $variables['title'] . '</h2>';
-    $output .= '<ol class="breadcrumb__list"><li class="breadcrumb__item">';
-    $output .= implode($separator . '</li><li class="breadcrumb__item">', $variables['breadcrumb']);
-    if ($variables['display_trailing_separator']) {
-      $output .= $separator;
+  $show_breadcrumb = theme_get_setting('zen_breadcrumb');
+  if ($show_breadcrumb == 'yes' || $show_breadcrumb == 'admin' && arg(0) == 'admin') {
+
+    // Optionally get rid of the homepage link.
+    $show_breadcrumb_home = theme_get_setting('zen_breadcrumb_home');
+    if (!$show_breadcrumb_home) {
+      array_shift($breadcrumb);
     }
-    $output .= '</li></ol></nav>';
+
+    // Return the breadcrumb with separators.
+    if (!empty($breadcrumb)) {
+      $breadcrumb_separator = filter_xss_admin(theme_get_setting('zen_breadcrumb_separator'));
+      $trailing_separator = $title = '';
+      if (theme_get_setting('zen_breadcrumb_title')) {
+        $item = menu_get_item();
+        if (!empty($item['tab_parent'])) {
+          // If we are on a non-default tab, use the tab's title.
+          $breadcrumb[] = check_plain($item['title']);
+        }
+        else {
+          $breadcrumb[] = drupal_get_title();
+        }
+      }
+      elseif (theme_get_setting('zen_breadcrumb_trailing')) {
+        $trailing_separator = $breadcrumb_separator;
+      }
+
+      // Provide a navigational heading to give context for breadcrumb links to
+      // screen-reader users.
+      if (empty($variables['title'])) {
+        $variables['title'] = t('You are here');
+      }
+      // Unless overridden by a preprocess function, make the heading invisible.
+      if (!isset($variables['title_attributes_array']['class'])) {
+        $variables['title_attributes_array']['class'][] = 'visually-hidden';
+      }
+
+      // Build the breadcrumb trail.
+      $output = '<nav class="breadcrumb" role="navigation">';
+      $output .= '<h2' . drupal_attributes($variables['title_attributes_array']) . '>' . $variables['title'] . '</h2>';
+      $output .= '<ol><li>' . implode($breadcrumb_separator . '</li><li>', $breadcrumb) . $trailing_separator . '</li></ol>';
+      $output .= '</nav>';
+    }
   }
 
   return $output;
@@ -131,9 +109,10 @@ function zen_preprocess_html(&$variables, $hook) {
   $variables['path_to_zen'] = drupal_get_path('theme', 'zen');
   // Get settings for HTML5 and responsive support. array_filter() removes
   // items from the array that have been disabled.
-  $meta = array_filter((array) theme_get_setting('zen_meta'));
-  $variables['add_html5_shim']          = in_array('html5', $meta);
-  $variables['default_mobile_metatags'] = in_array('meta', $meta);
+  $html5_respond_meta = array_filter((array) theme_get_setting('zen_html5_respond_meta'));
+  $variables['add_respond_js']          = in_array('respond', $html5_respond_meta);
+  $variables['add_html5_shim']          = in_array('html5', $html5_respond_meta);
+  $variables['default_mobile_metatags'] = in_array('meta', $html5_respond_meta);
 
   // If the user is silly and enables Zen as the theme, add some styles.
   if ($GLOBALS['theme'] == 'zen') {
@@ -148,11 +127,11 @@ function zen_preprocess_html(&$variables, $hook) {
   );
 
   // Send X-UA-Compatible HTTP header to force IE to use the most recent
-  // rendering engine.
+  // rendering engine or use Chrome's frame rendering engine if available.
   // This also prevents the IE compatibility mode button to appear when using
   // conditional classes on the html tag.
   if (is_null(drupal_get_http_header('X-UA-Compatible'))) {
-    drupal_add_http_header('X-UA-Compatible', 'IE=edge');
+    drupal_add_http_header('X-UA-Compatible', 'IE=edge,chrome=1');
   }
 
   $variables['skip_link_anchor'] = check_plain(theme_get_setting('zen_skip_link_anchor'));
@@ -190,6 +169,20 @@ function zen_preprocess_html(&$variables, $hook) {
       }
     }
     $variables['classes_array'][] = drupal_html_class('section-' . $section);
+  }
+  if (theme_get_setting('zen_wireframes')) {
+    $variables['classes_array'][] = 'with-wireframes'; // Optionally add the wireframes style.
+  }
+
+  // When Panels is used on a site, Drupal's sidebar body classes will be wrong,
+  // so override those with classes from a Panels layout preprocess.
+  // @see zen_preprocess_zen_main().
+  $panels_classes_array = &drupal_static('zen_panels_classes_array', array());
+  if (!empty($panels_classes_array)) {
+    // Remove Drupal's sidebar classes.
+    $variables['classes_array'] = array_diff($variables['classes_array'], array('two-sidebars', 'one-sidebar sidebar-first', 'one-sidebar sidebar-second', 'no-sidebars'));
+    // Merge in the classes from the Panels layout.
+    $variables['classes_array'] = array_merge($variables['classes_array'], $panels_classes_array);
   }
 
   // Store the menu item since it has some useful information.
@@ -240,13 +233,8 @@ function zen_process_html_tag(&$variables) {
   $tag = &$variables['element'];
 
   if ($tag['#tag'] == 'style' || $tag['#tag'] == 'script') {
-    // Remove redundant CDATA comments.
-    unset($tag['#value_prefix'], $tag['#value_suffix']);
-
-    // Remove redundant type attribute.
-    if (isset($tag['#attributes']['type']) && $tag['#attributes']['type'] !== 'text/ng-template') {
-      unset($tag['#attributes']['type']);
-    }
+    // Remove redundant type attribute and CDATA comments.
+    unset($tag['#attributes']['type'], $tag['#value_prefix'], $tag['#value_suffix']);
 
     // Remove media="all" but leave others unaffected.
     if (isset($tag['#attributes']['media']) && $tag['#attributes']['media'] === 'all') {
@@ -278,7 +266,7 @@ function zen_preprocess_page(&$variables, $hook) {
   $secondary_links = variable_get('menu_secondary_links_source', 'user-menu');
   if ($secondary_links) {
     $menus = function_exists('menu_get_menus') ? menu_get_menus() : menu_list_system_menus();
-    $variables['secondary_menu_heading'] = isset($menus[$secondary_links]) ? $menus[$secondary_links] : '';
+    $variables['secondary_menu_heading'] = $menus[$secondary_links];
   }
   else {
     $variables['secondary_menu_heading'] = '';
@@ -393,15 +381,7 @@ function zen_preprocess_comment(&$variables, $hook) {
   }
   $variables['classes_array'][] = $variables['zebra'];
 
-  // Add the comment__permalink class.
-  $uri = entity_uri('comment', $variables['comment']);
-  $uri_options = $uri['options'] + array('attributes' => array('class' => array('comment__permalink'), 'rel' => 'bookmark'));
-  $variables['permalink'] = l(t('Permalink'), $uri['path'], $uri_options);
-
-  // Remove core's permalink class and add the comment__title class.
   $variables['title_attributes_array']['class'][] = 'comment__title';
-  $uri_options = $uri['options'] + array('attributes' => array('rel' => 'bookmark'));
-  $variables['title'] = l($variables['comment']->subject, $uri['path'], $uri_options);
 }
 
 /**
@@ -413,17 +393,19 @@ function zen_preprocess_comment(&$variables, $hook) {
  *   The name of the template being rendered ("region" in this case.)
  */
 function zen_preprocess_region(&$variables, $hook) {
-  // Use a template with no wrapper for the sidebar regions.
+  // Sidebar regions get some extra classes and a common template suggestion.
   if (strpos($variables['region'], 'sidebar_') === 0) {
-    // Allow a region-specific template to override Zen's region--no-wrapper.
-    array_unshift($variables['theme_hook_suggestions'], 'region__no_wrapper');
+    $variables['classes_array'][] = 'column';
+    $variables['classes_array'][] = 'sidebar';
+    // Allow a region-specific template to override Zen's region--sidebar.
+    array_unshift($variables['theme_hook_suggestions'], 'region__sidebar');
   }
   // Use a template with no wrapper for the content region.
   elseif ($variables['region'] == 'content') {
     // Allow a region-specific template to override Zen's region--no-wrapper.
     array_unshift($variables['theme_hook_suggestions'], 'region__no_wrapper');
   }
-  // Add a BEM-style class for header region.
+  // Add a SMACSS-style class for header region.
   elseif ($variables['region'] == 'header') {
     array_unshift($variables['classes_array'], 'header__region');
   }
@@ -585,15 +567,26 @@ function zen_form_node_form_alter(&$form, &$form_state, $form_id) {
 function zen_menu_local_tasks(&$variables) {
   $output = '';
 
+  // Add theme hook suggestions for tab type.
+  foreach (array('primary', 'secondary') as $type) {
+    if (!empty($variables[$type])) {
+      foreach (array_keys($variables[$type]) as $key) {
+        if (isset($variables[$type][$key]['#theme']) && ($variables[$type][$key]['#theme'] == 'menu_local_task' || is_array($variables[$type][$key]['#theme']) && in_array('menu_local_task', $variables[$type][$key]['#theme']))) {
+          $variables[$type][$key]['#theme'] = array('menu_local_task__' . $type, 'menu_local_task');
+        }
+      }
+    }
+  }
+
   if (!empty($variables['primary'])) {
     $variables['primary']['#prefix'] = '<h2 class="visually-hidden">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<ul class="tabs">';
+    $variables['primary']['#prefix'] .= '<ul class="tabs-primary tabs primary">';
     $variables['primary']['#suffix'] = '</ul>';
     $output .= drupal_render($variables['primary']);
   }
   if (!empty($variables['secondary'])) {
     $variables['secondary']['#prefix'] = '<h2 class="visually-hidden">' . t('Secondary tabs') . '</h2>';
-    $variables['secondary']['#prefix'] .= '<ul class="tabs tabs--secondary">';
+    $variables['secondary']['#prefix'] .= '<ul class="tabs-secondary tabs secondary">';
     $variables['secondary']['#suffix'] = '</ul>';
     $output .= drupal_render($variables['secondary']);
   }
@@ -607,17 +600,21 @@ function zen_menu_local_tasks(&$variables) {
  * @ingroup themeable
  */
 function zen_menu_local_task($variables) {
-  // Views uses hook_menu_local_task without using hook_menu_local_tasks, which breaks all the styling.
-  if (isset($variables['element']['#parents'][0]) && $variables['element']['#parents'][0] === 'displays') {
-    // Use core's theme hook instead.
-    return theme_menu_local_task($variables);
-  }
+  $type = $class = FALSE;
+
   $link = $variables['element']['#link'];
   $link_text = $link['title'];
 
-  // Add BEM-style class names.
-  $link['localized_options']['attributes']['class'][] = 'tabs__tab-link';
-  $class = 'tabs__tab';
+  // Check for tab type set in zen_menu_local_tasks().
+  if (is_array($variables['element']['#theme'])) {
+    $type = in_array('menu_local_task__secondary', $variables['element']['#theme']) ? 'tabs-secondary' : 'tabs-primary';
+  }
+
+  // Add SMACSS-style class names.
+  if ($type) {
+    $link['localized_options']['attributes']['class'][] = $type . '__tab-link';
+    $class = $type . '__tab';
+  }
 
   if (!empty($variables['element']['#active'])) {
     // Add text to indicate active tab for non-visual users.
@@ -631,38 +628,23 @@ function zen_menu_local_task($variables) {
     $link['localized_options']['html'] = TRUE;
     $link_text = t('!local-task-title!active', array('!local-task-title' => $link['title'], '!active' => $active));
 
-    $link['localized_options']['attributes']['class'][] = 'is-active';
-    $class .= ' is-active';
+    if (!$type) {
+      $class = 'active';
+    }
+    else {
+      $link['localized_options']['attributes']['class'][] = 'is-active';
+      $class .= ' is-active';
+    }
   }
 
-  return '<li class="' . $class . '">' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
+  return '<li' . ($class ? ' class="' . $class . '"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
 }
 
 /**
  * Implements hook_preprocess_menu_link().
  */
 function zen_preprocess_menu_link(&$variables, $hook) {
-  // Normalize menu item classes to be an array.
-  if (empty($variables['element']['#attributes']['class'])) {
-    $variables['element']['#attributes']['class'] = array();
-  }
-  $menu_item_classes =& $variables['element']['#attributes']['class'];
-  if (!is_array($menu_item_classes)) {
-    $menu_item_classes = array($menu_item_classes);
-  }
-
-  // Normalize menu link classes to be an array.
-  if (empty($variables['element']['#localized_options']['attributes']['class'])) {
-    $variables['element']['#localized_options']['attributes']['class'] = array();
-  }
-  $menu_link_classes =& $variables['element']['#localized_options']['attributes']['class'];
-  if (!is_array($menu_link_classes)) {
-    $menu_link_classes = array($menu_link_classes);
-  }
-
-  // Add BEM-style classes to the menu item classes.
-  $extra_classes = array('menu__item');
-  foreach ($menu_item_classes as $key => $class) {
+  foreach ($variables['element']['#attributes']['class'] as $key => $class) {
     switch ($class) {
       // Menu module classes.
       case 'expanded':
@@ -671,31 +653,28 @@ function zen_preprocess_menu_link(&$variables, $hook) {
       case 'active':
       // Menu block module classes.
       case 'active-trail':
-        $extra_classes[] = 'is-' . $class;
+        array_unshift($variables['element']['#attributes']['class'], 'is-' . $class);
         break;
       case 'has-children':
-        $extra_classes[] = 'is-parent';
+        array_unshift($variables['element']['#attributes']['class'], 'is-parent');
         break;
     }
   }
-  $menu_item_classes = array_merge($extra_classes, $menu_item_classes);
-
-  // Add BEM-style classes to the menu link classes.
-  $extra_classes = array('menu__link');
-  if (empty($menu_link_classes)) {
-    $menu_link_classes = array();
+  array_unshift($variables['element']['#attributes']['class'], 'menu__item');
+  if (empty($variables['element']['#localized_options']['attributes']['class'])) {
+    $variables['element']['#localized_options']['attributes']['class'] = array();
   }
   else {
-    foreach ($menu_link_classes as $key => $class) {
+    foreach ($variables['element']['#localized_options']['attributes']['class'] as $key => $class) {
       switch ($class) {
         case 'active':
         case 'active-trail':
-          $extra_classes[] = 'is-' . $class;
+          array_unshift($variables['element']['#localized_options']['attributes']['class'], 'is-' . $class);
           break;
       }
     }
   }
-  $menu_link_classes = array_merge($extra_classes, $menu_link_classes);
+  array_unshift($variables['element']['#localized_options']['attributes']['class'], 'menu__link');
 }
 
 /**
@@ -705,61 +684,25 @@ function zen_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
 
-  // Allow a preprocess function to override the default SVG icons.
-  if (!isset($variables['icon'])) {
-    $variables['icon'] = array();
-    foreach (array('status', 'warning', 'error') as $type) {
-      // Add a GPL-licensed icon from IcoMoon. https://icomoon.io/#preview-free
-      $icon_size = 'width="24" height="24"';
-      // All of the IcoMoon SVGs have the same header.
-      $variables['icon'][$type] = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' . $icon_size . ' viewBox="0 0 64 64">';
-      switch ($type) {
-        case 'error':
-          $variables['icon'][$type] .= '<path d="M63.416 51.416c-0-0-0.001-0.001-0.001-0.001l-19.415-19.416 19.415-19.416c0-0 0.001-0 0.001-0.001 0.209-0.209 0.36-0.453 0.457-0.713 0.265-0.711 0.114-1.543-0.458-2.114l-9.172-9.172c-0.572-0.572-1.403-0.723-2.114-0.458-0.26 0.097-0.504 0.248-0.714 0.457 0 0-0 0-0.001 0.001l-19.416 19.416-19.416-19.416c-0-0-0-0-0.001-0.001-0.209-0.209-0.453-0.36-0.713-0.457-0.711-0.266-1.543-0.114-2.114 0.457l-9.172 9.172c-0.572 0.572-0.723 1.403-0.458 2.114 0.097 0.26 0.248 0.505 0.457 0.713 0 0 0 0 0.001 0.001l19.416 19.416-19.416 19.416c-0 0-0 0-0 0.001-0.209 0.209-0.36 0.453-0.457 0.713-0.266 0.711-0.114 1.543 0.458 2.114l9.172 9.172c0.572 0.572 1.403 0.723 2.114 0.458 0.26-0.097 0.504-0.248 0.713-0.457 0-0 0-0 0.001-0.001l19.416-19.416 19.416 19.416c0 0 0.001 0 0.001 0.001 0.209 0.209 0.453 0.36 0.713 0.457 0.711 0.265 1.543 0.114 2.114-0.458l9.172-9.172c0.572-0.572 0.723-1.403 0.458-2.114-0.097-0.26-0.248-0.504-0.457-0.713z" fill="#000000"></path>';
-          break;
-        case 'warning':
-          $variables['icon'][$type] .= '<path d="M26,64l12,0c1.105,0 2,-0.895 2,-2l0,-9c0,-1.105 -0.895,-2 -2,-2l-12,0c-1.105,0 -2,0.895 -2,2l0,9c0,1.105 0.895,2 2,2Z" fill="#000000"></path><path d="M26,46l12,0c1.105,0 2,-0.895 2,-2l0,-42c0,-1.105 -0.895,-2 -2,-2l-12,0c-1.105,0 -2,0.895 -2,2l0,42c0,1.105 0.895,2 2,2Z" fill="#000000"></path>';
-          break;
-        default:
-          $variables['icon'][$type] .= '<path d="M54 8l-30 30-14-14-10 10 24 24 40-40z" fill="#000000"></path>';
-      }
-      $variables['icon'][$type] .= '</svg>';
-    }
-  }
-
   $status_heading = array(
     'status' => t('Status message'),
     'error' => t('Error message'),
     'warning' => t('Warning message'),
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
-    $output .= "<div class=\"messages messages--$type\">\n";
+    $output .= "<div class=\"messages--$type messages $type\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="visually-hidden">' . $status_heading[$type] . "</h2>\n";
     }
-
-    if (!empty($variables['icon'])) {
-      $output .= '<div class="messages__icon">';
-      switch ($type) {
-        case 'error':
-        case 'warning':
-          $output .= $variables['icon'][$type];
-          break;
-        default:
-          $output .= $variables['icon']['status'];
-      }
-      $output .= "</div>";
-    }
-
     if (count($messages) > 1) {
       $output .= " <ul class=\"messages__list\">\n";
       foreach ($messages as $message) {
-        $output .= '  <li class="messages__item">' . $message . "</li>\n";
+        $output .= '  <li class=\"messages__item\">' . $message . "</li>\n";
       }
       $output .= " </ul>\n";
     }
     else {
-      $output .= reset($messages);
+      $output .= $messages[0];
     }
     $output .= "</div>\n";
   }
@@ -773,10 +716,10 @@ function zen_mark($variables) {
   $type = $variables['type'];
 
   if ($type == MARK_NEW) {
-    return ' <mark class="highlight-mark">' . t('new') . '</mark>';
+    return ' <mark class="new">' . t('new') . '</mark>';
   }
   elseif ($type == MARK_UPDATED) {
-    return ' <mark class="highlight-mark">' . t('updated') . '</mark>';
+    return ' <mark class="updated">' . t('updated') . '</mark>';
   }
 }
 

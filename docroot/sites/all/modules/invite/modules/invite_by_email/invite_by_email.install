@@ -118,7 +118,7 @@ function invite_by_email_add_fields() {
         'default_value' => array(
           array(
             'value' => variable_get('invite_default_mail_subject', ''),
-          ),
+          )
         ),
         'widget' => array(
           'type' => 'text_textfield',
@@ -147,7 +147,7 @@ function invite_by_email_add_fields() {
         'default_value' => array(
           array(
             'value' => variable_get('invite_default_mail_body', ''),
-          ),
+          )
         ),
         'widget' => array(
           'type' => 'text_textarea',
@@ -184,3 +184,4 @@ function invite_by_email_add_fields() {
 function invite_by_email_update_7001(&$sandbox) {
   invite_by_email_add_fields();
 }
+

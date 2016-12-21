@@ -12,7 +12,6 @@ dependencies[] = features
 dependencies[] = ffc
 dependencies[] = field_formatter_settings
 dependencies[] = forum
-dependencies[] = invite
 dependencies[] = link
 dependencies[] = media
 dependencies[] = number

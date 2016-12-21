@@ -1,100 +1,53 @@
-// @file
-// The major stylesheet for this theme.
-//
-// We categorize our components by creating headings in this file. See the
-// description on the style guide home page for more information.
+/**
+ * @file
+ * Styles are organized using the SMACSS technique. @see http://smacss.com/book/
+ *
+ * When you turn on CSS aggregation at admin/config/development/performance, all
+ * of these @include files will be combined into a single file.
+ */
 
+/* Import Sass mixins, variables, Compass modules, etc. */
+@import "init";
 
-// Colors and Sass
-//
-// Documentation for colors and Sass mixins and variables.
-//
-// Weight: -1
-//
-// Style guide: sass
-@import 'init';
+/* HTML element (SMACSS base) rules */
+@import "base/fonts";
+@import "base/normalize";
 
-// Defaults
-//
-// These are the default base styles applied to HTML elements.
-//
-// Component classes can override these styles, but if no class applies a style
-// to an HTML element, these styles will be the ones displayed.
-//
-// Style guide: base
+/* Layout rules */
+@import "layouts/responsive";
 
-// Ensure fonts get loaded first to minimize front-end performance impact.
-@import 'base/fonts';
-@import 'base/normalize';
+/* Component (SMACSS module) rules */
+@import "components/clearfix";
 
-// Layouts
-//
-// The layout styling for major parts of the page that are included with the
-// theme. Note: some Panels layouts are included in other parts of the system
-// and are not documented.
-//
-// Style guide: layouts
-@import 'layouts/layout-3col/layout-3col';
-@import 'layouts/layout-center/layout-center';
-@import 'layouts/layout-swap/layout-swap';
+@import "components/forms-drupal";
+@import "components/autocomplete";
+@import "components/button";
+@import "components/collapsible-fieldsets";
+@import "components/form-tables";
+@import "components/openid";
+@import "components/progress-bar";
+@import "components/resizable-textarea";
+@import "components/tabledrag";
 
-// Components
-//
-// Design components are reusable designs that can be applied using just the CSS
-// class names specified in the component.
-//
-// Weight: 1
-//
-// Style guide: components
+@import "components/block";
+@import "components/breadcrumb";
+@import "components/comments";
+@import "components/header";
+@import "components/hidden";
+@import "components/highlight-mark";
+@import "components/inline";
+@import "components/messages";
+@import "components/more-link";
+@import "components/navbar";
+@import "components/no-wrap";
+@import "components/pager";
+@import "components/side-menu";
+@import "components/skip-link";
+@import "components/status";
+@import "components/tabs";
+@import "components/visually-hidden";
+@import "components/watermark";
+@import "components/wireframes";
 
-@import 'components/box/box';
-@import 'components/clearfix/clearfix';
-@import 'components/comment/comment';
-@import 'components/divider/divider';
-@import 'components/header/header';
-@import 'components/hidden/hidden';
-@import 'components/highlight-mark/highlight-mark';
-@import 'components/inline-links/inline-links';
-@import 'components/inline-sibling/inline-sibling';
-@import 'components/messages/messages';
-@import 'components/print-none/print-none';
-@import 'components/responsive-video/responsive-video';
-@import 'components/visually-hidden/visually-hidden';
-@import 'components/watermark/watermark';
-@import 'components/wireframe/wireframe';
-
-// Navigation
-//
-// Navigation components are specialized design components that are used for
-// page navigation.
-//
-// Weight: 2
-//
-// Style guide: navigation
-
-@import 'navigation/breadcrumb/breadcrumb';
-@import 'navigation/more-link/more-link';
-@import 'navigation/nav-menu/nav-menu';
-@import 'navigation/navbar/navbar';
-@import 'navigation/pager/pager';
-@import 'navigation/skip-link/skip-link';
-@import 'navigation/tabs/tabs';
-
-// Forms
-//
-// Form components are specialized design components that are applied to forms
-// or form elements.
-//
-// Weight: 3
-//
-// Style guide: forms
-
-@import 'forms/autocomplete/autocomplete';
-@import 'forms/button/button';
-@import 'forms/collapsible-fieldset/collapsible-fieldset';
-@import 'forms/form-item/form-item';
-@import 'forms/form-table/form-table';
-@import 'forms/progress-bar/progress-bar';
-@import 'forms/progress-throbber/progress-throbber';
-@import 'forms/resizable-textarea/resizable-textarea';
-@import 'forms/table-drag/table-drag';
+/* @TODO: Refactor print states into their respective components. */
+@import "components/print";

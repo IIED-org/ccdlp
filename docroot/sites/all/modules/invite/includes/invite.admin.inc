@@ -7,7 +7,6 @@
  * @param $form_state
  * @param InviteType $invite_type
  * @param string $op
- *
  * @return array
  */
 function invite_type_form($form, &$form_state, $invite_type, $op = 'edit') {
@@ -81,7 +80,7 @@ function invite_type_form($form, &$form_state, $invite_type, $op = 'edit') {
       '#value' => t('Delete invite type'),
       '#weight' => 45,
       '#limit_validation_errors' => array(),
-      '#submit' => array('invite_type_form_submit_delete'),
+      '#submit' => array('invite_type_form_submit_delete')
     );
   }
   return $form;
@@ -122,7 +121,7 @@ function invite_type_form_submit_delete(&$form, &$form_state) {
  *   Renderable array
  */
 function invite_admin_add_page() {
-  $items = [];
+  $items = array();
   foreach (invite_get_types() as $invite_type_key => $invite_type) {
     $items[] = l(entity_label('invite_type', $invite_type), 'invite/add/' . $invite_type_key);
   }
@@ -131,7 +130,7 @@ function invite_admin_add_page() {
     $form_element = array(
       'list' => array(
         '#markup' => '<h3>No invite types have been enabled.</h3><br /><p>To create invites at least one invite type must be enabled.</p>',
-      ),
+      )
     );
   }
   else {
@@ -139,8 +138,8 @@ function invite_admin_add_page() {
       'list' => array(
         '#theme' => 'item_list',
         '#items' => $items,
-        '#title' => t('Select type of invite to create.'),
-      ),
+        '#title' => t('Select type of invite to create.')
+      )
     );
   }
 
@@ -151,7 +150,6 @@ function invite_admin_add_page() {
  * Add new invite page callback.
  *
  * @param string $type
- *
  * @return array|mixed
  */
 function invite_add($type) {
@@ -171,7 +169,6 @@ function invite_add($type) {
  * @param $form
  * @param $form_state
  * @param Invite $invite
- *
  * @return array
  */
 function invite_form($form, &$form_state, $invite) {
@@ -200,7 +197,7 @@ function invite_form($form, &$form_state, $invite) {
   );
 
   // Show Delete button if we edit invite.
-  $invite_id = entity_id('invite', $invite);
+  $invite_id = entity_id('invite' ,$invite);
   if (!empty($invite_id) && invite_access('edit', $invite)) {
     $form['actions']['delete'] = array(
       '#type' => 'submit',
@@ -231,25 +228,18 @@ function invite_form_validate($form, &$form_state) {
  * @param $form_state
  */
 function invite_form_submit($form, &$form_state) {
-  global $user;
   $invite = $form_state['invite'];
-  $token_data = array(
-    'invite' => $invite,
-    'user' => $user,
-    'profile' => user_load($user->uid),
-  );
 
   entity_form_submit_build_entity('invite', $invite, $form, $form_state);
 
   if (invite_save($invite)) {
     $invite_uri = entity_uri('invite', $invite);
-    $invite_redirect = token_replace(variable_get('invite_redirect_upon_create', NULL), $token_data);
-    $form_state['redirect'] = $invite_redirect ? $invite_redirect : $invite_uri;
+    $form_state['redirect'] = $invite_uri['path'];
   }
 }
 
 /**
- * Invite delete form handler.
+ * Invite delete form handler
  *
  * @param $form
  * @param $form_state
@@ -266,13 +256,12 @@ function invite_form_submit_delete($form, &$form_state) {
  * @param $form
  * @param $form_state
  * @param Invite $invite
- *
  * @return array
  */
 function invite_delete_form($form, &$form_state, $invite) {
   $form_state['invite'] = $invite;
   // Always provide entity id in the same form key as in the entity edit form.
-  $form['invite_type_id'] = array('#type' => 'value', '#value' => entity_id('invite', $invite));
+  $form['invite_type_id'] = array('#type' => 'value', '#value' => entity_id('invite' ,$invite));
   $invite_uri = entity_uri('invite', $invite);
   return confirm_form($form,
     t('Are you sure you want to delete %title?', array('%title' => entity_label('invite', $invite))),
@@ -330,26 +319,6 @@ function invite_settings_form() {
     '#description' => t('Accounts that have been created with an invitation will require administrator approval.'),
   );
 
-  $form['invite_redirect_upon_create'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Redirect to path after invite created.'),
-    '#default_value' => variable_get('invite_redirect_upon_create', '[invite:url]'),
-    '#description' => t('Optional redirect path after creation of invite. <a></a>'),
-  );
-
-  if (module_exists('token')) {
-    $form['token_help'] = array(
-      '#title' => t('Replacement patterns'),
-      '#type' => 'fieldset',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    );
-
-    $form['token_help']['help'] = array(
-      '#markup' => theme('token_tree', array('token_types' => array('user', 'profile', 'invite'))),
-    );
-  }
-
   return system_settings_form($form);
 }
 
@@ -400,7 +369,7 @@ function invite_migrate_form() {
     );
 
     $form['actions'] = array(
-      '#type' => 'actions',
+      '#type' => 'actions'
     );
 
     $form['actions']['submit'] = array(
@@ -435,7 +404,7 @@ function invite_migrate_form_validate($form, &$form_state) {
       'field_invitation_email_body',
     );
     $verified_fields = 0;
-    foreach (field_info_instances('invite', 'invite_by_email') as $field_name => $field) {
+    foreach(field_info_instances('invite', 'invite_by_email') as $field_name => $field) {
       if (in_array($field_name, $needed_fields)) {
         $verified_fields++;
       }
@@ -459,7 +428,7 @@ function invite_migrate_form_submit($form, &$form_state) {
       'operations' => array(
         array('invite_migrate_process', array($form_state['values'])),
       ),
-      'file' => drupal_get_path('module', 'invite') . '/includes/invite.admin.inc',
+      'file' => drupal_get_path('module', 'invite') . '/includes/invite.admin.inc'
     );
     batch_set($batch);
     batch_process();
