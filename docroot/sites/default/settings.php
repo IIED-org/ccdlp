@@ -281,7 +281,7 @@ $drupal_hash_salt = 'jfT4POZmJdvhgciYFQleDpGsSdOkOdlaqEa8l5D70j0';
 
 
 if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
-  $base_url = 'http://www.climatelearningplatform.org';
+  $base_url = 'https://www.climatelearningplatform.org';
 }
   // NO trailing slash!
 
