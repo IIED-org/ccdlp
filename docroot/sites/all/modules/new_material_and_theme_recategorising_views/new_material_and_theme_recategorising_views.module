@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the New material and theme recategorising views feature.
+ */
+
+include_once 'new_material_and_theme_recategorising_views.features.inc';
