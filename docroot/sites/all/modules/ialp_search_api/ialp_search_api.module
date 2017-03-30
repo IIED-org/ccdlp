@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * Code for the IALP Search API module.
+ * Implements HOOK_facet_items_alter()
+ *
+ * Hook is supplied by the facetapi_bonus module
+*/
+
+function ialp_search_api_facet_items_alter(&$build, &$settings) {
+  $adapter = facetapi_adapter_load($settings->searcher);
+  $facet = facetapi_facet_load($settings->facet, $settings->searcher);
+  $items = $adapter->getActiveItems($facet);
+
+  $item_values = array();
+
+  foreach ($items as $item) {
+    $item_values[] = $item['value'];
+  }
+
+  $is_all_link_active = count($items) == 0;
+  $all_link_path = $adapter->getFacetPath($facet, $item_values, TRUE);
+  $all_link_query = $adapter->getQueryString($facet, $item_values, TRUE);
+
+
+  $build['All'] = array(
+    '#markup' => t('All'),
+    '#path' => $all_link_path,
+    '#html' => FALSE,
+    '#count' => NULL,
+    '#indexed_value' => 'All',
+    '#active' => $is_all_link_active,
+    '#item_parents' => array(),
+    '#item_children' => array(),
+    '#query' => $all_link_query,
+  );
+}

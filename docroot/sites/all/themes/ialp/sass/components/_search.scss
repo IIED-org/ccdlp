@@ -1,14 +1,32 @@
 // #block-search-form,
 // #block-search-api-page-search-api, 
 //#block-custom-search-blocks-1,
-#searchme {
-  display: inline-block; 
-  float: right;
+#searchme,
+#block-custom-search-blocks-1 {
+   float: right;
+   div, form {
+     display: inline-block; 
+  }
   a, img
   {
     vertical-align: middle;
   }
+  input.form-text {
+    width: 10em;
+  }
 }
+
+/* Full width bar */
+#block-custom-search-blocks-2 {
+  input.form-text {
+     width: 95%;
+     margin: 0 auto 20px;
+   }
+  h2 {
+    text-align: center;
+  }
+}
+
 
 a#searchme:hover, a#searchme:active {
   background-color: transparent;
@@ -62,13 +80,15 @@ nav.mm-menu.mm-fresh > .mm-list {
   .field-name-field-material-type, 
   .field-name-field-no-of-pages,
   .field-name-field-author-s-,
-  .field-name-field-file
+  .field-name-field-file,
+  .field-name-field-theme
    {
      @extend .field-name-ds-user-picture; // In _misc.scss
   }
   .field-name-field-material-type, 
   .field-name-field-no-of-pages,
-  .field-name-field-author-s- {
+  .field-name-field-author-s-,
+  .field-name-field-theme {
     width: auto !important;
   }
 }
