@@ -206,7 +206,7 @@ $zen-auto-include-grid-item-base: false;
 }
 
 /**
- * Use 5 grid columns for larger screens.
+ * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
 
@@ -214,20 +214,36 @@ $zen-auto-include-grid-item-base: false;
     	width: 18%;
   }
 
-  $zen-columns: 10 !global;
+  $zen-columns: 12 !global;
+  
+  .views-responsive-grid {
+    @include zen-grid-container(grid-item);
+    .views-column-first {
+       @include zen-grid-item(4, 1);
+    }
+    .views-column-middle {
+       @include zen-grid-item(4, 5);
+    }
+    .views-column-last {
+       @include zen-grid-item(4, 9);
+    }
+    .views-row {
+      @include zen-new-row();
+    }
+  }
 
   /**
    * The layout when there is only one sidebar, the left one.
    */
   .sidebar-first {
-    /* Span 7 columns, starting in 4th column from left. */
+    /* Span 8 columns, starting in 4th column from left. */
     .main-content {
-      @include zen-grid-item(7, 4);
+      @include zen-grid-item(8, 5);
     }
 
-    /* Span 3 columns, starting in 1st column from left. */
+    /* Span 4 columns, starting in 1st column from left. */
     .region-sidebar-first {
-      @include zen-grid-item(3, 1);
+      @include zen-grid-item(4, 1);
     }
   }
 
@@ -237,12 +253,12 @@ $zen-auto-include-grid-item-base: false;
   .sidebar-second {
     /* Span 4 columns, starting in 1st column from left. */
     .main-content {
-      @include zen-grid-item(7, 1);
+      @include zen-grid-item(8, 1);
     }
 
-    /* Span 1 column, starting in 5th column from left. */
+    /* Span 4 columns, starting in 9th column from left. */
     .region-sidebar-second {
-      @include zen-grid-item(3, 8);
+      @include zen-grid-item(4,9);
     }
   }
 
@@ -250,32 +266,19 @@ $zen-auto-include-grid-item-base: false;
    * The layout when there are two sidebars.
    */
   .two-sidebars {
-    /* Span 6 columns, starting in 3rd column from left. */
+    /* Span 4 columns, starting in 1st column from left. */
     .main-content {
-      @include zen-grid-item(6, 3);
+      @include zen-grid-item(4, 1);
     }
 
-    .views-responsive-grid {
-      @include zen-grid-container(grid-item);
-      .views-column-first {
-         @include zen-grid-item(5, 1);
-      }
-      .views-column-last {
-         @include zen-grid-item(5, 6);
-      }
-      .views-row {
-        @include zen-new-row();
-      }
-    }
-
-    /* Span 2 columns, starting in 1st column from left. */
+    /* Span 4 columns, starting in 5th column from left. */
     .region-sidebar-first {
-      @include zen-grid-item(2, 1);
+      @include zen-grid-item(4, 5);
     }
 
-    /* Span 2 column, starting in 9th column from left. */
+    /* Span 4 columns, starting in 9th column from left. */
     .region-sidebar-second {
-      @include zen-grid-item(2, 9);
+      @include zen-grid-item(4, 9);
     }
   }
   

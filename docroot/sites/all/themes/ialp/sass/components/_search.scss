@@ -73,29 +73,6 @@ nav.mm-menu.mm-fresh > .mm-list {
   display: block;
 }
 
-/* Search results */
-
-.view-mode-search_result, .view-mode-teaser {
-  .field-name-thumbnail,
-  .field-name-field-cover-image, 
-  .field-name-field-material-type, 
-  .field-name-field-no-of-pages,
-  .field-name-field-author-s-,
-  .field-name-field-file,
-  .field-name-field-theme
-   {
-     @extend .field-name-ds-user-picture; // In _misc.scss
-  }
-  .field-name-field-material-type, 
-  .field-name-field-no-of-pages,
-  .field-name-field-author-s-,
-  .field-name-field-theme {
-    width: auto !important;
-  }
-}
-
-
-
 .view-mode-search_result, .view-mode-teaser {
    .field-name-title h2 {
      margin-top: 0;
