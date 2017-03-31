@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the microblog feed view feature.
+ */
+
+include_once 'microblog_feed_view.features.inc';
