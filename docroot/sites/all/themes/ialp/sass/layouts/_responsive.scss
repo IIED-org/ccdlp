@@ -62,7 +62,7 @@ $zen-auto-include-grid-item-base: false;
 
 .main-navigation {
   position: absolute;
-  top: 10px;
+  top: -4em;
   height: $nav-height;
   width: $zen-grid-width;
   text-align:right;
@@ -73,8 +73,8 @@ $zen-auto-include-grid-item-base: false;
   	width: 36%;
 }
 
-#searchme, .logoright {
-  margin-top: 0.5rem;
+#searchme, .logoright, #block-custom-search-blocks-1 {
+  margin-top: -1em;
 }
 
 /* Small screens */
@@ -88,15 +88,16 @@ $zen-auto-include-grid-item-base: false;
   .main-navigation {
     /* Move the navbar up inside .main's padding. */
     top: 0;
-	text-align: left;
+	  text-align: left;
     background-color: $green;
   }
+  
   .header__name-and-slogan {
-    margin-top: 2em; 
+    margin-top: 1em; 
   }
   
-  #searchme, .logoright {
-    margin-top: -3em;
+  #searchme, .logoright, #block-custom-search-blocks-1 {
+    margin-top: -2.2em;
   }
 
 }
@@ -110,6 +111,10 @@ $zen-auto-include-grid-item-base: false;
  */
 
 @media all and (min-width: 480px) and (max-width: 959px) {
+  #searchme, .logoright, #block-custom-search-blocks-1 {
+    margin-top: -2.2em;
+  }
+  
   .buttons div {
     	width: 31%;
   }
@@ -209,7 +214,10 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
-
+  #searchme, .logoright, #block-custom-search-blocks-1 {
+    margin-top: -0.67em;
+  }
+  
   .buttons div {
     	width: 18%;
   }
