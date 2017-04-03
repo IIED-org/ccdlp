@@ -22,7 +22,7 @@ function search_api_page_view($id, $keys = NULL, $overridden_options = array()) 
   }
 
   // Merge in overridden options.
-  if ($overridden_options) {
+  if (is_array($overridden_options)) {
     $page->original_options = $page->options;
     $page->options = $overridden_options + $page->options;
   }
