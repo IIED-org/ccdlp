@@ -60,6 +60,9 @@ a#searchme:hover, a#searchme:active {
 
 ul.facetapi-facetapi-checkbox-links li.leaf {
   list-style: none;
+  a {
+    text-decoration: none;
+  }
 }
 
 /* Sliding search menu */
