@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the In-Country blogs feature.
+ */
+
+include_once 'in_country_blogs.features.inc';
