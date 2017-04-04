@@ -56,6 +56,12 @@ a#searchme:hover, a#searchme:active {
   max-width:66%;
 }
 
+/* Checkbox facets */
+
+ul.facetapi-facetapi-checkbox-links li.leaf {
+  list-style: none;
+}
+
 /* Sliding search menu */
 
 .mm-menu {
