@@ -1,0 +1,8 @@
+name = IALP Search API
+description = Enables "All" link for facets
+core = 7.x
+package = Search
+version = 7.x-0.1
+project = ialp_search_api
+dependencies[] = search_api
+dependencies[] = facetapi_bonus

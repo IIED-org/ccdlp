@@ -30,23 +30,59 @@
   display: none;
 }
 
-/* Thumbails */
+/* Thumbnails */
 
 .field-name-ds-user-picture,
 .view-mode-teaser .field-name-field-cover-image,
 .view-mode-teaser .field-name-field-videoembed,
 .view-mode-search_result .field-name-field-videoembed,
 .view-mode-full img.shrinktheweb,
-.view-id-links img.shrinktheweb {
+.view-id-links img.shrinktheweb, 
+.view-mode-grid .field-name-field-videoembed,
+.view-mode-grid img.shrinktheweb {
   float: left;
   margin: 0 10px 10px 0;
   width: 120px;
+  height: auto;
    img {
      border: solid 1px $higrey;
    }
 }
 
-.page-user {
+/* Search results, teaser & grid layouts  */
+
+.view-mode-search_result, .view-mode-teaser, .view-mode-grid {
+  .field-name-thumbnail,
+  .field-name-field-cover-image, 
+  .field-name-field-material-type, 
+  .field-name-field-no-of-pages,
+  .field-name-field-author-s-,
+  .field-name-field-file,
+  .field-name-field-theme
+   {
+     @extend .field-name-ds-user-picture;
+  }
+  .field-name-field-material-type, 
+  .field-name-field-no-of-pages,
+  .field-name-field-author-s-,
+  .field-name-field-theme {
+    width: auto !important;
+  }
+}
+
+.view-mode-grid {
+  .field-name-field-material-type, 
+  .field-name-field-no-of-pages,
+  .field-name-field-author-s-,
+  .field-name-field-theme {
+    width: 230px !important;
+  }
+}
+
+
+
+.page-user,
+.page-guidance-briefs-more {
   dd, dt {
     display: inline;
     margin: 0;
@@ -54,7 +90,8 @@
   h3 {
    clear: both; 
   }
-  h2 {
+  h4 {
+    line-height: 1.5em;
     margin-top: 0;
   }
 }

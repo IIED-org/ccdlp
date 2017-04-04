@@ -1,14 +1,32 @@
 // #block-search-form,
 // #block-search-api-page-search-api, 
 //#block-custom-search-blocks-1,
-#searchme {
-  display: inline-block; 
-  float: right;
+#searchme,
+#block-custom-search-blocks-1 {
+   float: right;
+   div, form {
+     display: inline-block; 
+  }
   a, img
   {
     vertical-align: middle;
   }
+  input.form-text {
+    width: 10em;
+  }
 }
+
+/* Full width bar */
+#block-custom-search-blocks-2 {
+  input.form-text {
+     width: 90%;
+     margin: 0 auto 20px;
+   }
+  h2 {
+    text-align: center;
+  }
+}
+
 
 a#searchme:hover, a#searchme:active {
   background-color: transparent;
@@ -53,27 +71,6 @@ nav.mm-menu.mm-fresh > .mm-list {
 .mm-menu.mm-vertical .mm-list .mm-panel {
   display: block;
 }
-
-/* Search results */
-
-.view-mode-search_result, .view-mode-teaser {
-  .field-name-thumbnail,
-  .field-name-field-cover-image, 
-  .field-name-field-material-type, 
-  .field-name-field-no-of-pages,
-  .field-name-field-author-s-,
-  .field-name-field-file
-   {
-     @extend .field-name-ds-user-picture; // In _misc.scss
-  }
-  .field-name-field-material-type, 
-  .field-name-field-no-of-pages,
-  .field-name-field-author-s- {
-    width: auto !important;
-  }
-}
-
-
 
 .view-mode-search_result, .view-mode-teaser {
    .field-name-title h2 {

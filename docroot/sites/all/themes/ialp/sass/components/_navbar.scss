@@ -26,11 +26,14 @@
       padding: 0; /* LTR */
       list-style-type: none;
       list-style-image: none;
-      
+      &.last a::after {
+        content: "";
+      }
       a {
        display: block;
        text-decoration: none;
-       padding: 1em;
+       padding: 1em 0 1em 5px;
+       
        &:link,
        &:visited {
          color: white;
@@ -39,6 +42,9 @@
        &:active {
          color: white;
          background-color: $higreen;
+       }
+       &::after {
+         content: " |";
        }
       }
     }
