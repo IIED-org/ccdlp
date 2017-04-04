@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * microblog.features.field_base.inc
+ * in_country_blogs.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function microblog_field_default_field_bases() {
+function in_country_blogs_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'field_blog_date'.

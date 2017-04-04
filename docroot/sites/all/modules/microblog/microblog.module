@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Microblog feature.
- */
-
-include_once 'microblog.features.inc';
