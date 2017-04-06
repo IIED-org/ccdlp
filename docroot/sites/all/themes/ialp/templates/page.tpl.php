@@ -60,6 +60,11 @@
        <?php print render($page['preface']); ?>
     </div>
     
+    <div class="content-top">
+      <div class="content-left"><?php print render($page['content_left']); ?></div>
+      <div class="content-right"><?php print render($page['content_right']); ?></div>
+    </div>
+    
     <div class="main-content" role="main">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>

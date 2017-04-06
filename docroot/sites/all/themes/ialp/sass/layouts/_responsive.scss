@@ -274,6 +274,24 @@ $zen-auto-include-grid-item-base: false;
    * The layout when there are two sidebars.
    */
   .two-sidebars {
+    
+    /* Top region 4 + 8 columns */
+    
+    .content-top {
+      @include zen-grid-item(12, 1);
+      @include zen-grid-container(grid-item);
+      @include zen-new-row();
+    
+      .content-left {
+        @include zen-grid-item(4, 1);
+      }
+    
+      .content-right {
+        @include zen-grid-item(8, 5);
+      }
+      
+   }
+   
     /* Span 4 columns, starting in 1st column from left. */
     .main-content {
       @include zen-grid-item(4, 1);
@@ -293,7 +311,7 @@ $zen-auto-include-grid-item-base: false;
   .front {
     
     /* Front page content */
-   
+    
     .content-front {
       @include zen-grid-item(10, 1);
       @include zen-grid-container(grid-item);
