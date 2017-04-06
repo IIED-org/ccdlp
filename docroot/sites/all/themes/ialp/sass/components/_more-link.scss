@@ -4,7 +4,8 @@
  */
 
 .more-link, 
-.field-name-more-link {
+.field-name-more-link,
+.pager--infinite-scroll li a {
   text-align: center; /* LTR */
   border: solid 1px $green;
   border-radius: 10px;

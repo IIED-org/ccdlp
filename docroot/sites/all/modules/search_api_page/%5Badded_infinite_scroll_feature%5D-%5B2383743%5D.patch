@@ -1,0 +1,122 @@
+diff --git a/search_api_page.admin.inc b/search_api_page.admin.inc
+index 9150304..de9f565 100644
+--- a/search_api_page.admin.inc
++++ b/search_api_page.admin.inc
+@@ -183,6 +183,27 @@ function search_api_page_admin_add(array $form, array &$form_state) {
+     '#options' => drupal_map_assoc(array(5, 10, 20, 30, 40, 50, 60, 80, 100)),
+     '#default_value' => 10,
+   );
++  
++  // GD infinite scrolling
++  if (module_exists('gd_infinite_scroll')) {
++    $form['infinite_scroll'] = array(
++      '#type' => 'checkbox',
++      '#title' => t('Use infinite scrolling feature instead of pagination'),
++      '#description' => t('This will load new results in the same page via ajax query.'),
++      '#default_value' => FALSE,
++    );
++  }
++  else {
++    $form['infinite_scroll'] = array(
++      '#markup' => t('For infinite scrolling feature instead of pagination you should enable !module module.', array(
++        '!module' => l('GD Infinite Scroll', 'https://www.drupal.org/project/gd_infinite_scroll', array(
++          'attributes' => array(
++            'target' => '_blank',
++          ),
++        )),
++      )),
++    );
++  }
+ 
+   $form['get_per_page'] = array(
+     '#type' => 'checkbox',
+@@ -284,6 +305,27 @@ function search_api_page_admin_add_submit(array $form, array &$form_state) {
+   $values = $form_state['step_one'];
+   $values['options'] = $form_state['values'];
+   search_api_page_insert($values);
++  
++  // Infinite scroll
++  if (module_exists('gd_infinite_scroll')) {
++    $infinite_scroll = ($values['options']['infinite_scroll'] ? TRUE:FALSE);
++
++    // If enabled
++    if ($infinite_scroll) {
++      $name = 'search_pages_' . $values['name'];
++      $url = $values['path'] . '/*';
++      $settings = array(
++        'pager_selector' => 'ul.pager',
++        'next_selector' => 'li.pager-next a:first',
++        'content_selector' => '.search-results',
++        'items_selector' => '.search-result',
++        'load_more' => 1,
++        'load_more_markup' => ' <button class="load-more">@label</button>',
++      );
++      gd_infinite_scroll_settings_save($name, $url, $settings);
++    }
++  }
++  
+   drupal_set_message(t('The search page was successfully created.'));
+   $form_state['redirect'] = 'admin/config/search/search_api/page';
+ }
+@@ -389,6 +431,27 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
+     '#options' => drupal_map_assoc(array(5, 10, 20, 30, 40, 50, 60, 80, 100)),
+     '#default_value' => $page->options['per_page'],
+   );
++  
++  // GD infinite scrolling
++  if (module_exists('gd_infinite_scroll')) {
++    $form['options']['infinite_scroll'] = array(
++      '#type' => 'checkbox',
++      '#title' => t('Use infinite scrolling feature instead of pagination'),
++      '#description' => t('This will load new results in the same page via ajax query.'),
++      '#default_value' => ($page->options['infinite_scroll'] ? TRUE : FALSE),
++    );
++  }
++  else {
++    $form['options']['infinite_scroll'] = array(
++      '#markup' => t('For infinite scrolling feature instead of pagination you should enable !module module.', array(
++        '!module' => l('GD Infinite Scroll', 'https://www.drupal.org/project/gd_infinite_scroll', array(
++          'attributes' => array(
++            'target' => '_blank',
++          ),
++        )),
++      )),
++    );
++  }
+ 
+   $form['options']['result_page_search_form'] = array(
+     '#type' => 'checkbox',
+@@ -538,5 +601,33 @@ function search_api_page_admin_edit_submit(array $form, array &$form_state) {
+     return;
+   }
+   search_api_page_edit($form_state['page']->machine_name, $form_state['values']);
++  
++  // Infinite scroll
++  if (module_exists('gd_infinite_scroll')) {
++    if ($form_state['values']['options']['infinite_scroll'] != $form_state['page']->options['infinite_scroll']) {
++      $infinite_scroll = ($form_state['values']['options']['infinite_scroll'] ? TRUE:FALSE);
++      
++      // If enabled
++      if ($infinite_scroll) {
++        $name = 'search_pages_' . $form_state['values']['name'];
++        $url = $form_state['values']['path'] . '/*';
++        $settings = array(
++          'pager_selector' => 'ul.pager',
++          'next_selector' => 'li.pager-next a:first',
++          'content_selector' => '.search-results',
++          'items_selector' => '.search-result',
++          'load_more' => 1,
++          'load_more_markup' => ' <button class="load-more">@label</button>',
++        );
++        gd_infinite_scroll_settings_save($name, $url, $settings);
++      }
++      // If disabled
++      else {
++        $name = 'search_pages_' . $form_state['values']['name'];
++        gd_infinite_scroll_settings_delete($name);
++      }
++    }
++  }
++  
+   drupal_set_message(t('The changes were successfully saved.'));
+ }

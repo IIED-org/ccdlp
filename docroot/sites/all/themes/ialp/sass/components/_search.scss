@@ -17,14 +17,19 @@
 }
 
 /* Full width bar */
-#block-custom-search-blocks-2 {
+#block-custom-search-blocks-2,
+#block-views-exp-taxonomy-search-page-2 {
   input.form-text {
      width: 90%;
-     margin: 0 auto 20px;
+     margin: 0 auto;
    }
   h2 {
     text-align: center;
   }
+}
+
+.page-search .views-exposed-form .views-exposed-widget {
+  float: none;
 }
 
 
