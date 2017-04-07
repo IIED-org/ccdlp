@@ -3,7 +3,6 @@
   text-align: center;
   padding: 10px 0;
   margin-bottom: 1em;
-  min-height: 120px;
   h1 {
     margin: 0;
   }
@@ -21,6 +20,6 @@
   }
 }
 
-.page-type .preface {
-  min-height: auto;
+.page-theme .preface {
+  min-height: 120px;
 }
