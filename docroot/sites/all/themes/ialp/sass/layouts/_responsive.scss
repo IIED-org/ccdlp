@@ -62,7 +62,7 @@ $zen-auto-include-grid-item-base: false;
 
 .main-navigation {
   position: absolute;
-  top: -4em;
+  top: 2em;
   height: $nav-height;
   width: $zen-grid-width;
   text-align:right;
@@ -80,6 +80,8 @@ $zen-auto-include-grid-item-base: false;
  
  #block-superfish-1 {
    right: 0;
+   position: relative;
+   z-index: 1;
  }
 
 .preface {
@@ -251,9 +253,6 @@ $zen-auto-include-grid-item-base: false;
     .views-field-description {
         margin-left: 260px;
       }
-    img {
-        display: block;
-    }
   }
   
   .buttons div {
