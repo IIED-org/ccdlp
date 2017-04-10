@@ -77,6 +77,15 @@ $zen-auto-include-grid-item-base: false;
   margin-top: -1em;
 }
 
+.preface {
+  .views-field-description {
+      margin-left: 0;
+    }
+  img {
+      display: none;
+  }
+}
+
 /* Small screens */
 @media all and (min-width: 480px) {
 
@@ -98,6 +107,15 @@ $zen-auto-include-grid-item-base: false;
   
   #searchme, .logoright, #block-custom-search-blocks-1 {
     margin-top: -2.2em;
+  }
+  
+  .preface {
+    .views-field-description {
+        margin-left: 0;
+      }
+    img {
+        display: block;
+    }
   }
 
 }
@@ -216,6 +234,14 @@ $zen-auto-include-grid-item-base: false;
 @media all and (min-width: 960px) {
   #searchme, .logoright, #block-custom-search-blocks-1 {
     margin-top: -0.67em;
+  }
+  .preface {
+    .views-field-description {
+        margin-left: 260px;
+      }
+    img {
+        display: block;
+    }
   }
   
   .buttons div {

@@ -95,7 +95,7 @@
   h4 {
     font-size: 16px;
     line-height: 1.5em;
-    margin-top: 0;
+    margin: 0;
   }
 }
 
@@ -139,6 +139,15 @@ ol.search-results {
   padding-left: 0;
 }
 
+.meta, .label-inline {
+  float: none !important;
+  display: inline;
+  font-size: 90%;
+}
+
+.label-inline {
+  font-weight: 600;
+}
 
 /* Home page lists */
 
