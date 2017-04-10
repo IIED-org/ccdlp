@@ -58,7 +58,8 @@
   .field-name-field-no-of-pages,
   .field-name-field-author-s-,
   .field-name-field-file,
-  .field-name-field-theme
+  .field-name-field-theme,
+  .field-name-field-image
    {
      @extend .field-name-ds-user-picture;
   }
@@ -79,7 +80,14 @@
   }
 }
 
-
+.taxonomy-term.view-mode-grid .field-name-field-image {
+    width: 180px !important;
+    margin-bottom: 30px;
+    img {
+      border: none;
+    }
+ }
+ 
 
 .page-user,
 .page-guidance-briefs-more,
@@ -96,7 +104,7 @@
   h4 {
     font-size: 16px;
     line-height: 1.5rem;
-    margin: 0 0 .5rem 0;
+    margin: 0 .2rem .5rem 0;
   }
 }
 
@@ -154,13 +162,31 @@ ol.search-results {
   font-weight: 600;
 }
 
-/* Home page lists */
+/* Home page views */
 
-.view-popular, .view-recent-content {
-  a {
-    text-decoration:none;
+.front {
+  h2.block__title, .view-header {
+    text-align: center;
+    p {
+      font-weight: bold;
+    }
   }
+  .paragraphs-item-block .block {
+    padding: 20px;
+  }
+
+  #block-views-guidance-block-4 {
+    background-color: $khaki;
+  }
+  
+  .view-popular, .view-recent-content {
+    a {
+      text-decoration:none;
+    }
+  }
+
 }
+
 
 /* Forums */
 
