@@ -73,22 +73,37 @@ $zen-auto-include-grid-item-base: false;
   	width: 36%;
 }
 
-#searchme, .logoright, #block-custom-search-blocks-1 {
-  margin-top: -1em;
-}
+#block-custom-search-blocks-1 {
+   top: 0.5em;
+   right: 10px;
+ }
+ 
+ #block-superfish-1 {
+   right: 0;
+ }
 
 .preface {
   .views-field-description {
-      margin-left: 0;
+      margin-left: 10px;
     }
   img {
-      display: none;
+      text-align: center;
+      float: none;
   }
 }
 
 /* Small screens */
 @media all and (min-width: 480px) {
 
+  #superfish-1-select {
+    margin-top: .67em;
+  }
+
+  #block-custom-search-blocks-1 {
+     top: -.67em;
+     right: 15px;
+   }
+   
   .main {
     /* Move all the children of .main down to make room. */
     padding-top: $nav-height;
@@ -105,16 +120,14 @@ $zen-auto-include-grid-item-base: false;
     margin-top: 1em; 
   }
   
-  #searchme, .logoright, #block-custom-search-blocks-1 {
-    margin-top: -2.2em;
-  }
-  
   .preface {
-    .views-field-description {
-        margin-left: 0;
+    .views-field-description, h1 {
+        margin-left: 250px;
+        text-align: left;
       }
     img {
-        display: block;
+      float: left;
+      margin-top: -70px;
     }
   }
 
@@ -129,9 +142,6 @@ $zen-auto-include-grid-item-base: false;
  */
 
 @media all and (min-width: 480px) and (max-width: 959px) {
-  #searchme, .logoright, #block-custom-search-blocks-1 {
-    margin-top: -2.2em;
-  }
   
   .buttons div {
     	width: 31%;
@@ -232,10 +242,12 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
-  #searchme, .logoright, #block-custom-search-blocks-1 {
-    margin-top: -0.67em;
-  }
+  
   .preface {
+    h1 {
+      margin-left: 0;
+      text-align: center;
+    }
     .views-field-description {
         margin-left: 260px;
       }

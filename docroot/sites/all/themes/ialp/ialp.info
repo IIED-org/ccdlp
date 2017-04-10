@@ -96,6 +96,7 @@ regions[content_left]   = Content-left
 regions[content_right]  = Content-right
 regions[sidebar_first]  = First sidebar
 regions[sidebar_second] = Second sidebar
+regions[content_bottom] = Content-bottom
 regions[footer]         = Footer
 regions[bottom]         = Page bottom
 

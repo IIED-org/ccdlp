@@ -1,9 +1,9 @@
 // #block-search-form,
 // #block-search-api-page-search-api, 
 //#block-custom-search-blocks-1,
-#searchme,
+
 #block-custom-search-blocks-1 {
-   float: right;
+   position: absolute;
    div, form {
      display: inline-block; 
   }
