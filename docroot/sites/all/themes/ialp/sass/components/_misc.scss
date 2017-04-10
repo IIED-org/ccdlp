@@ -84,7 +84,8 @@
 .page-user,
 .page-guidance-briefs-more,
 .page-search,
-.view-mode-search_result {
+.view-mode-search_result,
+.front {
   dd, dt {
     display: inline;
     margin: 0;
@@ -133,6 +134,10 @@
   h3 {
     line-height: normal;
   }
+}
+
+.front .views-row {
+  border-bottom: none;
 }
 
 ol.search-results {
