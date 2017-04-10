@@ -28,9 +28,6 @@
 
 /* The name of the website. */
 .header__site-name {
-  margin: .5em 0;
-  font-size: 23px;
-  font-weight: normal;
 }
 
 /* The link around the name of the website. */
@@ -39,7 +36,6 @@
   &:visited {
     color: $blue;
     text-decoration: none;
-    text-transform: uppercase; 
   }
 
   &:hover,
