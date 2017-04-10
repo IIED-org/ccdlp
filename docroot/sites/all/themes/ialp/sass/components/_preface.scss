@@ -16,6 +16,8 @@
   }
 }
 
-.page-theme .preface {
-  min-height: 120px;
+.page-theme, .section-themes {
+  .preface {
+    min-height: 120px;
+  }
 }

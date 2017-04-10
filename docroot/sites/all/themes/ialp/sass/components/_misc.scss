@@ -144,8 +144,10 @@
   }
 }
 
-.front .views-row {
-  border-bottom: none;
+.front, .page-key-themes, .page-our-themes, .page-key-partner-countries
+  { .views-row {
+    border-bottom: none;
+  }
 }
 
 ol.search-results {
@@ -162,10 +164,13 @@ ol.search-results {
   font-weight: 600;
 }
 
-/* Home page views */
+/* Home page and landing page views */
 
-.front {
-  h2.block__title, .view-header {
+.front,
+.page-key-themes,
+.page-our-themes,
+.page-key-partner-countries {
+  h2.block__title, .view-header, h2.field-content, .views-field-field-image {
     text-align: center;
     p {
       font-weight: bold;
