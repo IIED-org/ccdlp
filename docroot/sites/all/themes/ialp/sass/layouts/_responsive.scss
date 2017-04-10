@@ -261,11 +261,11 @@ $zen-auto-include-grid-item-base: false;
   
   .views-responsive-grid {
     @include zen-grid-container(grid-item);
+    .views-column, .views-column-middle {
+       @include zen-grid-item(4, 5);
+    }
     .views-column-first {
        @include zen-grid-item(4, 1);
-    }
-    .views-column-middle {
-       @include zen-grid-item(4, 5);
     }
     .views-column-last {
        @include zen-grid-item(4, 9);
