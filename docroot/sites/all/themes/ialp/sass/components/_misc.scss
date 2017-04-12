@@ -192,6 +192,21 @@ ol.search-results {
     background-color: $khaki;
   }
   
+  #block-views-835cd7dd66d8c70185419a6793c6c29e {
+    background-color: $green;
+    color: white;
+    a {
+      color: white;
+    }
+    .more-link {
+      border: solid 1px white;
+      &:hover, &:active {
+        background-color: white;
+        color: $green;
+      }
+    }
+  }
+  
   .view-popular, .view-recent-content {
     a {
       text-decoration:none;
