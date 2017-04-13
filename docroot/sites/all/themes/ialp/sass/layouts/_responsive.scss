@@ -88,11 +88,19 @@ $zen-auto-include-grid-item-base: false;
   .views-field-description {
       margin-left: 10px;
     }
-  .section-themes img {
+  .section-themes, .section-key-partner-countries {
+   img {
       text-align: center;
       float: none;
   }
 }
+}
+  #flexslider-2 {
+    left: 0;
+    margin-top: 0;
+    max-width: 100%;
+  }
+
 
 
 /* Small screens */
@@ -122,17 +130,6 @@ $zen-auto-include-grid-item-base: false;
   .header__name-and-slogan {
     margin-top: 1em; 
   }
-  
-  .preface {
-    .views-field-description, h1 {
-        margin-left: 250px;
-        text-align: left;
-      }
-    .section-themes img {
-      float: left;
-      margin-top: -70px;
-    }
-  }
 
 }
 
@@ -146,9 +143,6 @@ $zen-auto-include-grid-item-base: false;
 
 @media all and (min-width: 480px) and (max-width: 959px) {
   
-  .buttons div {
-    	width: 31%;
-  }
   
   $zen-columns: 12 !global;
 
@@ -252,14 +246,18 @@ $zen-auto-include-grid-item-base: false;
         margin-left: 260px;
       }    
     }
-  .section-themes .preface img {
+  .section-themes, .section-key-partner-countries {
+   .preface img {
         float: left;
         margin-top: -70px;
       }
-  
-  .buttons div {
-    	width: 18%;
-  }
+    }
+   #flexslider-2 {
+     max-width: 480px;
+     margin-top: -362px;
+     left: 682px;
+   }
+
 
   $zen-columns: 12 !global;
   

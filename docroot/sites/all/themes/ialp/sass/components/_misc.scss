@@ -171,7 +171,6 @@ ol.search-results {
   
   .flexslider {
     border-radius: 0;
-    height: 320px;
     border: none;
     box-shadow: none;
   }
@@ -182,9 +181,6 @@ ol.search-results {
     z-index:2;
   }
    #flexslider-2 {
-     max-width: 480px;
-     margin-top: -362px;
-     left: 682px;
      li {
        display: block !important;
        float: none !important;
@@ -210,7 +206,6 @@ ol.search-results {
        max-height: 3.5em;
      }
    }
-  
 }
 
 .front,
@@ -338,4 +333,15 @@ ol.search-results {
   td.views-field-mail {
     width: 40%;
   }
+}
+
+
+/* Microblog */
+
+.section-key-partner-countries .region-highlighted .block-views {
+  background-color: $khaki;
+  margin: 0 10px;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  padding: 10px;
 }
