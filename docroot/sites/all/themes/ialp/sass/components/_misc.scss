@@ -188,7 +188,7 @@ ol.search-results {
        opacity: 1 !important;
        line-height: 2em;
        margin: 20px 10px;
-       .clone {
+       &.clone {
          display: none !important;
        }
      }
@@ -196,7 +196,6 @@ ol.search-results {
        height: 320px !important;
      }
      .slides {
-       padding-top: 1px;
        transform: none !important;
      }
      li.flex-active-slide a {
@@ -205,7 +204,7 @@ ol.search-results {
      a {
        padding: 10px;
        display: block;
-       max-width: 90%;
+       max-height: 3.5em;
      }
    }
   
