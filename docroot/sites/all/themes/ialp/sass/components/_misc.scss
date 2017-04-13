@@ -188,6 +188,9 @@ ol.search-results {
        opacity: 1 !important;
        line-height: 2em;
        margin: 20px 10px;
+       .clone {
+         display: none !important;
+       }
      }
      .flex-viewport {
        height: 320px !important;
