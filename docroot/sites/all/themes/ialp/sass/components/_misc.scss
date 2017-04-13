@@ -167,28 +167,42 @@ ol.search-results {
   .main-content {
     padding: 0;
   }
+  
+  .flexslider {
+    border-radius: 0;
+    height: 320px;
+    border: none;
+    box-shadow: none;
+  }
   #flexslider-1 {
     max-width: 640px;
     margin: 40px;
   }
    #flexslider-2 {
-     max-width: 420px;
+     max-width: 440px;
      margin-top: -360px;
-     left: 730px;
-     height: 300px;
-     
+     left: 680px;
      li {
        display: block !important;
-       height: 75px;
+       float: none !important;
+       opacity: 1 !important;
+       line-height: 2em;
+       margin: 20px 10px;
      }
      .flex-viewport {
-       height: 300px !important;
+       height: 320px !important;
      }
      .slides {
+       padding-top: 1px;
        transform: none !important;
      }
-     .flex-active-slide {
+     li.flex-active-slide a {
        background-color: $khaki;
+     }
+     a {
+       padding: 10px;
+       display: block;
+       max-width: 90%;
      }
    }
   
