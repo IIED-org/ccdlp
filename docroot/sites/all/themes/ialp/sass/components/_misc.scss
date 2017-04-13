@@ -127,9 +127,13 @@
   }
 }
 
-.front, .page-key-themes, .page-our-themes, .page-key-partner-countries
-  { .views-row {
+.front, 
+.page-key-themes, 
+.page-our-themes, 
+.page-key-partner-countries { 
+  .views-row {
     border-bottom: none;
+    padding-bottom: 0;
   }
   .views-responsive-grid .views-field-field-image {
       text-align: center;
