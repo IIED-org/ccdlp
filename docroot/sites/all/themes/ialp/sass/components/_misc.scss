@@ -178,11 +178,13 @@ ol.search-results {
   #flexslider-1 {
     max-width: 640px;
     margin: 40px;
+    border: solid 1px $green;
+    z-index:2;
   }
    #flexslider-2 {
      max-width: 480px;
-     margin-top: -360px;
-     left: 680px;
+     margin-top: -362px;
+     left: 682px;
      li {
        display: block !important;
        float: none !important;
