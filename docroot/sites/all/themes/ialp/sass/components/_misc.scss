@@ -1,19 +1,5 @@
 /* Cover with material type */
 
-.front .attachment .views-field-field-cover-image {
-  position: relative;
-  img {
-    vertical-align: bottom;
-    display: inline-block;
-    float: none;
-  }
-}
-
-.front .views-field-field-cover-image img {
-  float: left;
-  margin: 0 10px 10px 0;
-}
-
 .mtype {
   background-color: $green;
   @include opacity(0.75);
@@ -22,12 +8,6 @@
   color: #FFFFFF;
   left: 0px;
   padding: 0.5em 1em;
-}
-
-/* Hide home page title */
-
-.front .preface h1 {
-  display: none;
 }
 
 /* Thumbnails */
@@ -175,6 +155,45 @@ ol.search-results {
 
 /* Home page and landing page views */
 
+.front {
+  .preface {
+    text-align: left;
+    min-height: 440px;
+  }
+  
+  h1 {
+    display: none;
+  }
+  .main-content {
+    padding: 0;
+  }
+  #flexslider-1 {
+    max-width: 640px;
+    margin: 40px;
+  }
+   #flexslider-2 {
+     max-width: 420px;
+     margin-top: -360px;
+     left: 730px;
+     height: 300px;
+     
+     li {
+       display: block !important;
+       height: 75px;
+     }
+     .flex-viewport {
+       height: 300px !important;
+     }
+     .slides {
+       transform: none !important;
+     }
+     .flex-active-slide {
+       background-color: $khaki;
+     }
+   }
+  
+}
+
 .front,
 .page-our-themes {
   h2.block__title, .view-header {
@@ -186,13 +205,15 @@ ol.search-results {
   }
   .paragraphs-item-block .block {
     padding: 20px;
+    margin: 0;
   }
 
   #block-views-guidance-block-4 {
     background-color: $khaki;
   }
   
-  #block-views-835cd7dd66d8c70185419a6793c6c29e {
+  #block-views-835cd7dd66d8c70185419a6793c6c29e,
+  #block-views-88c912dddfba50c8309b14ca647eeb44 {
     background-color: $green;
     color: white;
     a {
@@ -204,6 +225,9 @@ ol.search-results {
         background-color: white;
         color: $green;
       }
+    }
+    .views-column {
+      text-align: center;
     }
   }
   
