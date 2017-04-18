@@ -311,14 +311,7 @@ ol.search-results {
 
 .footer {
     background-color: $higrey;
-  .logos {
-    display: table;
-    width: 100%;
-    div {
-      display: table-cell;
-      width: 50%;
-      float: left;
-    }
+  .views-responsive-grid {
     img {
       float: left;
       margin: 0 10px 10px 0;
@@ -326,7 +319,11 @@ ol.search-results {
     }
     address {
       font-style: normal;
+      font-size: 85%;
     }
+  }
+  ul {
+    font-weight: bold;
   }
 }
 

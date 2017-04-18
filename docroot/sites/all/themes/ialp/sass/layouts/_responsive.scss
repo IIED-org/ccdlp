@@ -257,6 +257,15 @@ $zen-auto-include-grid-item-base: false;
      margin-top: -362px;
      left: 682px;
    }
+   
+   #block-menu-menu-footer-menu {
+     float: right;
+     width: 33.33%;
+     z-index: 2;
+     ul {
+       font-weight: bold;
+     }
+   }
 
 
   $zen-columns: 12 !global;
