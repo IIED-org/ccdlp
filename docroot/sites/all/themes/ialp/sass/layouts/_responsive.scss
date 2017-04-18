@@ -258,10 +258,15 @@ $zen-auto-include-grid-item-base: false;
      left: 682px;
    }
    
-   #block-menu-menu-footer-menu {
-     float: right;
-     width: 33.33%;
-     z-index: 2;
+   .footer {
+     #block-menu-menu-footer-menu {
+       float: right;
+       width: 33.33%;
+       z-index: 2;
+     }
+     p {
+       margin-top: -4em;
+     }
    }
 
 
