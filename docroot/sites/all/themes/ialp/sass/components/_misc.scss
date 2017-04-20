@@ -76,7 +76,8 @@
 .page-guidance-briefs-more,
 .page-search,
 .view-mode-search_result,
-.front {
+.view-mode-grid
+ {
   dd, dt {
     display: inline;
     margin: 0;
@@ -85,9 +86,16 @@
    clear: both; 
   }
   h4 {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5rem;
     margin: 0 .2rem .5rem 0;
+  }
+}
+
+.front {
+  @extend .page-user;
+  h4 {
+    font-size: 16px;
   }
 }
 
