@@ -3,18 +3,23 @@
  * "More" links.
  */
 
-.more-link, 
-.field-name-more-link {
+.more-link,
+.field-name-more-link,
+.pager--infinite-scroll li a {
   text-align: center; /* LTR */
   border: solid 1px $green;
   border-radius: 10px;
   padding: 5px;
   margin: auto;
   display: block;
-  width: 6em;
+  width: 6.7em;
+  font-size: 115%;
   text-decoration: none;
   &:hover, &:active {
     background-color: $green;
+  }
+  a {
+    text-decoration: none;
   }
 }
 

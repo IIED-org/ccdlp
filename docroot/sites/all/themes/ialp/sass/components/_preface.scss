@@ -1,13 +1,30 @@
 .preface {
-  background-color: #e0e4cc;
+  background-color: $khaki;
   text-align: center;
   padding: 10px 0;
   margin-bottom: 1em;
   h1 {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   p {
     font-weight: bold;
     margin-bottom: -1.33em;
+    padding: 0 10px 0 0;
   }
+  .views-field-description {
+      text-align: left;
+  }
+}
+
+.page-theme,
+.section-themes,
+.page-key-partner-countries {
+  .preface {
+    min-height: 120px;
+  }
+}
+
+.front .preface {
+  margin-bottom: 0;
 }

@@ -119,6 +119,11 @@
     <?php endif; ?>
 
   </div>
+  
+
+    <div class="content-bottom">
+      <?php print render($page['content_bottom']); ?>
+    </div>
 
   <?php print render($page['footer']); ?>
 

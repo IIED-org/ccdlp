@@ -8,6 +8,8 @@
   float: left; /* LTR */
   margin: 0 1em 0 0;
   padding: 0;
+  position: relative;
+  z-index: 2;
 }
 
 /* Logo image. */
@@ -28,9 +30,6 @@
 
 /* The name of the website. */
 .header__site-name {
-  margin: .5em 0;
-  font-size: 23px;
-  font-weight: normal;
 }
 
 /* The link around the name of the website. */
@@ -39,7 +38,6 @@
   &:visited {
     color: $blue;
     text-decoration: none;
-    text-transform: uppercase; 
   }
 
   &:hover,

@@ -37,9 +37,9 @@
 ?>
 <div class="<?php print $classes;?>">
   <?php if ($result_count): ?>
-    <ol class="search-results">
+    <div class="search-results">
       <?php print render($search_results); ?>
-    </ol>
+    </div>
     <?php print render($pager); ?>
   <?php else : ?>
     <h2><?php print t('Your search yielded no results.');?></h2>
