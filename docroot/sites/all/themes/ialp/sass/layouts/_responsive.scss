@@ -82,6 +82,7 @@ $zen-auto-include-grid-item-base: false;
    right: 0;
    position: relative;
    z-index: 1;
+   display: inline-block;
  }
 
 .preface {
@@ -111,7 +112,7 @@ $zen-auto-include-grid-item-base: false;
   }
 
   #block-custom-search-blocks-1 {
-     top: -.67em;
+     top: -.75em;
      right: 15px;
    }
    
@@ -236,7 +237,7 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
-  
+   
   .preface {
     h1 {
       margin-left: 0;
