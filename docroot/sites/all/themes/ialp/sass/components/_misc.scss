@@ -362,3 +362,22 @@ ol.search-results {
   border-radius: 5px;
   padding: 10px;
 }
+
+/* Resource upload */
+
+.droppable {
+  float: none;
+}
+
+.droppable-standard-upload {
+  line-height: 1em;
+}
+
+.droppable-browse-button {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-wrapper {
+  padding: 0;
+}
