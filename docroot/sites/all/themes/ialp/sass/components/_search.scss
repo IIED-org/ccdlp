@@ -3,16 +3,15 @@
 //#block-custom-search-blocks-1,
 
 #block-custom-search-blocks-1 {
-   position: absolute;
+  text-align: right;
+  display: inline-block; 
+  float: right;
    div, form {
      display: inline-block; 
   }
   a, img
   {
     vertical-align: middle;
-  }
-  input.form-text {
-    width: 10em;
   }
 }
 

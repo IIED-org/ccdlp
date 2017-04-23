@@ -64,8 +64,9 @@ $zen-auto-include-grid-item-base: false;
   position: absolute;
   top: 2em;
   height: $nav-height;
-  width: $zen-grid-width;
+  width: $zen-grid-width * .5;
   text-align:right;
+  right: 5px;
   background-color: transparent;
 }
 
@@ -74,14 +75,18 @@ $zen-auto-include-grid-item-base: false;
 }
 
 #block-custom-search-blocks-1 {
-   top: 0.5em;
-   right: 10px;
+  margin: 0;
+   input.form-text {
+     width: 4em;
+   }
  }
  
  #block-superfish-1 {
    right: 0;
    position: relative;
    z-index: 1;
+   display: inline-block;
+   max-width: 80%;
  }
 
 .preface {
@@ -111,8 +116,10 @@ $zen-auto-include-grid-item-base: false;
   }
 
   #block-custom-search-blocks-1 {
-     top: -.67em;
-     right: 15px;
+     margin-top: -.75em;
+      input.form-text {
+          width: 10em;
+        }
    }
    
   .main {
@@ -123,8 +130,10 @@ $zen-auto-include-grid-item-base: false;
   .main-navigation {
     /* Move the navbar up inside .main's padding. */
     top: 0;
+    right: 0;
 	  text-align: left;
     background-color: $green;
+    width: $zen-grid-width 
   }
   
   .header__name-and-slogan {
@@ -236,7 +245,7 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
-  
+   
   .preface {
     h1 {
       margin-left: 0;
