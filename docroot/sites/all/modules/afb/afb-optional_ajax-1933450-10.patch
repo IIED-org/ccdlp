@@ -1,0 +1,84 @@
+diff --git a/afb.module b/afb.module
+index e1c5e65..4bd39b2 100644
+--- a/afb.module
++++ b/afb.module
+@@ -277,6 +277,7 @@ function afb_form_alter(&$form, &$form_state, $form_id) {
+ 
+     $fields = empty($block_detail_data['node_fields']) ? array() : $block_detail_data['node_fields'];
+     $tabs = empty($block_detail_data['vertical_tabs']) ? array() : $block_detail_data['vertical_tabs'];
++    $use_ajax = !isset($block_detail_data['use_ajax']) ? 1 : $block_detail_data['use_ajax'];
+ 
+     if (isset($tabs['Publishing options']) && $tabs['Publishing options'] === 0) {
+       $form['options']['status'] = array(
+@@ -322,6 +323,9 @@ function afb_form_alter(&$form, &$form_state, $form_id) {
+         1 => 'node_form_submit',
+       ),
+     );
++    if (!$use_ajax) {
++      unset($form['ajax-submit']['#ajax']);
++    }
+   }
+   if (strpos($form_id, '_node_form') !== FALSE) {
+     /* Make sure we have necessary includes.
+@@ -718,6 +722,7 @@ function afb_configure_node_add_block($delta) {
+ 
+   $fields = empty($block_detail_data['node_fields']) ? $field_options : $block_detail_data['node_fields'];
+   $tabs = empty($block_detail_data['vertical_tabs']) ? $vertical_tab_options : $block_detail_data['vertical_tabs'];
++  $use_ajax = !isset($block_detail_data['use_ajax']) ? 1 : $block_detail_data['use_ajax'];
+ 
+   $form['node_fields'] = array(
+     '#type' => 'checkboxes',
+@@ -732,6 +737,17 @@ function afb_configure_node_add_block($delta) {
+     '#options' => drupal_map_assoc($vertical_tab_options),
+     '#default_value' => $tabs,
+   );
++
++  $form['use_ajax'] = array(
++    '#type' => 'radios',
++    '#title' => t('Submit form block using Ajax'),
++    '#options' => array(
++      0 => t('No'),
++      1 => t('Yes'),
++    ),
++    '#description' => t('Recommended value: Yes. Chage this only if you have problems redirecting after saving the node.'),
++    '#default_value' => $use_ajax,
++  );
+   return $form;
+ }
+ 
+@@ -763,6 +779,7 @@ function afb_configure_node_edit_block($delta) {
+ 
+   $fields = empty($block_detail_data['node_fields']) ? $field_options : $block_detail_data['node_fields'];
+   $tabs = empty($block_detail_data['vertical_tabs']) ? $vertical_tab_options : $block_detail_data['vertical_tabs'];
++  $use_ajax = !isset($block_detail_data['use_ajax']) ? 1 : $block_detail_data['use_ajax'];
+ 
+   $vertical_tab_default = variable_get('vertical_tabs_selection_' . $node->nid, '');
+   $form['node_fields'] = array(
+@@ -778,6 +795,17 @@ function afb_configure_node_edit_block($delta) {
+     '#options' => drupal_map_assoc($vertical_tab_options),
+     '#default_value' => $tabs,
+   );
++
++  $form['use_ajax'] = array(
++    '#type' => 'radios',
++    '#title' => t('Submit form block using Ajax'),
++    '#options' => array(
++      0 => t('No'),
++      1 => t('Yes'),
++    ),
++    '#description' => t('Recommended value: Yes. Chage this only if you have problems redirecting after saving the node.'),
++    '#default_value' => $use_ajax,
++  );
+   return $form;
+ }
+ 
+@@ -787,7 +815,8 @@ function afb_configure_node_edit_block($delta) {
+ function afb_block_save($delta = '', $edit = array()) {
+   $data = serialize(array(
+                          'node_fields' => $edit['node_fields'],
+-                         'vertical_tabs' => $edit['vertical_tabs']));
++                         'vertical_tabs' => $edit['vertical_tabs'],
++                         'use_ajax' => $edit['use_ajax']));
+   $num_updated = db_update('afb_blocks_data')
+                   ->fields(array(
+                     'data' => $data,
