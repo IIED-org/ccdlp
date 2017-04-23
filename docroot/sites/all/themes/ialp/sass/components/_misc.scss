@@ -206,9 +206,11 @@ ol.search-results {
      }
      .flex-viewport {
        height: 320px !important;
+       max-height: 320px !important;
      }
      .slides {
        transform: none !important;
+       height: 100% !important;
      }
      li.flex-active-slide a {
        background-color: $khaki;
