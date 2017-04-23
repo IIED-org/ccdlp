@@ -367,10 +367,17 @@ ol.search-results {
 
 .droppable {
   float: none;
+  border: 1px dashed $grey;
+}
+
+.droppable-message {
+  background: url("../images/dropfiles_image.png") top center no-repeat;
+  padding-top: 70px;
 }
 
 .droppable-standard-upload {
   line-height: 1em;
+  min-height: 45px;
 }
 
 .droppable-browse-button {
