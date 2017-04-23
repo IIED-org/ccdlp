@@ -64,8 +64,9 @@ $zen-auto-include-grid-item-base: false;
   position: absolute;
   top: 2em;
   height: $nav-height;
-  width: $zen-grid-width;
+  width: $zen-grid-width * .5;
   text-align:right;
+  right: 0;
   background-color: transparent;
 }
 
@@ -74,8 +75,11 @@ $zen-auto-include-grid-item-base: false;
 }
 
 #block-custom-search-blocks-1 {
-   top: 0.5em;
-   right: 10px;
+   margin-top: 0.5em;
+   margin-right: 0;
+   input.form-text {
+     width: 5em;
+   }
  }
  
  #block-superfish-1 {
@@ -112,8 +116,10 @@ $zen-auto-include-grid-item-base: false;
   }
 
   #block-custom-search-blocks-1 {
-     top: -.75em;
-     right: 15px;
+     margin-top: -.75em;
+      input.form-text {
+          width: 10em;
+        }
    }
    
   .main {
@@ -126,6 +132,7 @@ $zen-auto-include-grid-item-base: false;
     top: 0;
 	  text-align: left;
     background-color: $green;
+    width: $zen-grid-width 
   }
   
   .header__name-and-slogan {
