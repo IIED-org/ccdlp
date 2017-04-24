@@ -363,11 +363,26 @@ ol.search-results {
   padding: 10px;
 }
 
-/* Resource upload */
+/* Resource upload page */
+
+.section-learning-and-sharing .paragraphs-item-block {
+  max-width: 800px;
+  margin: 0 auto;
+  input, textarea {
+    width:100%;
+  &[type="submit"] {
+    width: auto;
+    text-align: center;
+    }
+  }
+  .form-type-checkbox input {
+    width: auto;
+  }
+}
 
 .droppable {
   float: none;
-  border: 1px dashed $grey;
+  border: 2px dashed $grey;
 }
 
 .droppable-message {

@@ -1,5 +1,0 @@
-name = Private Message Block
-description = Provides a block for private messages.
-core = 7.x
-package = Mail
-dependencies[] = privatemsg
