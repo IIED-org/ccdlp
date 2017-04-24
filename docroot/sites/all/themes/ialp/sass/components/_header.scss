@@ -61,4 +61,10 @@
 .header__region {
   /* Clear the logo. */
   clear: both;
+  .leaf {
+    list-style: none;
+    float: right;
+    display: inline-block;
+    padding: 0 5px;
+  }
 }
