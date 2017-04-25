@@ -335,7 +335,7 @@ ol.search-results {
       padding-top: 1em;
       font-style: normal;
       font-size: 85%;
-      line-height: auto;
+      line-height: 1.25em;
     }
   }
   ul {
@@ -384,6 +384,10 @@ ol.search-results {
 .droppable {
   float: none;
   border: 2px dashed $grey;
+  width: 98%;
+  .drag-over {
+    background-color: $midgrey;
+  }
 }
 
 .droppable-message {

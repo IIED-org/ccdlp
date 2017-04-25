@@ -106,8 +106,6 @@ $zen-auto-include-grid-item-base: false;
     max-width: 100%;
   }
 
-
-
 /* Small screens */
 @media all and (min-width: 480px) {
 
@@ -147,13 +145,28 @@ $zen-auto-include-grid-item-base: false;
 } // End of @if $zen-switch-direction == false
 
 /**
- * Use 12 grid columns for smaller screens.
+ * Use 12 grid columns for mid-size screens.
  */
 
 @media all and (min-width: 480px) and (max-width: 959px) {
   
   
   $zen-columns: 12 !global;
+
+  .views-responsive-grid {
+    @include zen-grid-container(grid-item);
+    .views-column, .views-column-middle {
+       @include zen-grid-item(6, 7);
+    }
+    .views-column-first {
+        @include zen-new-row();
+        @include zen-grid-item(6, 1);
+    }
+    .views-column-last {
+        @include zen-new-row();
+        @include zen-grid-item(6, 1);
+    }
+  }
 
   /**
    * The layout when there is only one sidebar, the left one.
