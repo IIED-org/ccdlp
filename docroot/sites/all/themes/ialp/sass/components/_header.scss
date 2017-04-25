@@ -25,7 +25,7 @@
 
 /* Wrapper for website name and slogan. */
 .header__name-and-slogan {
-  float: left;
+ /* float: left; */
 }
 
 /* The name of the website. */
@@ -61,6 +61,9 @@
 .header__region {
   /* Clear the logo. */
   clear: both;
+  .block-menu {
+    float: right;
+  }
   .leaf {
     list-style: none;
     float: right;

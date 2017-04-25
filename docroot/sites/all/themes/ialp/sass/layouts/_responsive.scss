@@ -62,13 +62,18 @@ $zen-auto-include-grid-item-base: false;
 
 .main-navigation {
   position: absolute;
-  top: 2em;
+  top: 4em;
   height: $nav-height;
   width: $zen-grid-width * .5;
   text-align:right;
   right: 5px;
   background-color: transparent;
 }
+
+.header__name-and-slogan {
+  float: left;
+}
+
 
 .buttons div {
   	width: 36%;
@@ -135,7 +140,8 @@ $zen-auto-include-grid-item-base: false;
   }
   
   .header__name-and-slogan {
-    margin-top: 1em; 
+    float: none;
+    margin-top: 2.5em; 
   }
 
 }
@@ -150,6 +156,9 @@ $zen-auto-include-grid-item-base: false;
 
 @media all and (min-width: 480px) and (max-width: 959px) {
   
+  .header__name-and-slogan {
+    clear: left;
+  }
   
   $zen-columns: 12 !global;
 
