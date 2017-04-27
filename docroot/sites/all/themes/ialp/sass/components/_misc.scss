@@ -88,7 +88,7 @@
   h4 {
     font-size: 14px;
     line-height: 1.5rem;
-    margin: 0 .2rem .5rem 0;
+    margin: 0 .5rem .5rem 0;
   }
 }
 
@@ -189,10 +189,11 @@ ol.search-results {
   #flexslider-1 {
     max-width: 640px;
     margin: 40px;
-    border: solid 1px $green;
     z-index:2;
+    border: solid 1px $green;
   }
    #flexslider-2 {
+     border: solid 1px $green;
      li {
        display: block !important;
        float: none !important;
@@ -334,7 +335,7 @@ ol.search-results {
       padding-top: 1em;
       font-style: normal;
       font-size: 85%;
-      line-height: auto;
+      line-height: 1.25em;
     }
   }
   ul {
@@ -361,4 +362,49 @@ ol.search-results {
   border: 1px solid $grey;
   border-radius: 5px;
   padding: 10px;
+}
+
+/* Resource upload page */
+
+.section-learning-and-sharing .paragraphs-item-block {
+  max-width: 800px;
+  margin: 0 auto;
+  input, textarea {
+    width:100%;
+  &[type="submit"] {
+    width: auto;
+    text-align: center;
+    }
+  }
+  .form-type-checkbox input {
+    width: auto;
+  }
+}
+
+.droppable {
+  float: none;
+  border: 2px dashed $grey;
+  width: 98%;
+  .drag-over {
+    background-color: $midgrey;
+  }
+}
+
+.droppable-message {
+  background: url("../images/dropfiles_image.png") center 5px no-repeat;
+  padding-top: 70px;
+}
+
+.droppable-standard-upload {
+  line-height: 1em;
+  min-height: 45px;
+}
+
+.droppable-browse-button {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-wrapper {
+  padding: 0;
 }

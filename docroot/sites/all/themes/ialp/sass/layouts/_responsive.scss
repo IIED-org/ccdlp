@@ -62,13 +62,18 @@ $zen-auto-include-grid-item-base: false;
 
 .main-navigation {
   position: absolute;
-  top: 2em;
+  top: 4em;
   height: $nav-height;
   width: $zen-grid-width * .5;
   text-align:right;
   right: 5px;
   background-color: transparent;
 }
+
+.header__name-and-slogan {
+  float: left;
+}
+
 
 .buttons div {
   	width: 36%;
@@ -106,8 +111,6 @@ $zen-auto-include-grid-item-base: false;
     max-width: 100%;
   }
 
-
-
 /* Small screens */
 @media all and (min-width: 480px) {
 
@@ -137,7 +140,8 @@ $zen-auto-include-grid-item-base: false;
   }
   
   .header__name-and-slogan {
-    margin-top: 1em; 
+    float: none;
+    margin-top: 2.5em; 
   }
 
 }
@@ -147,13 +151,31 @@ $zen-auto-include-grid-item-base: false;
 } // End of @if $zen-switch-direction == false
 
 /**
- * Use 12 grid columns for smaller screens.
+ * Use 12 grid columns for mid-size screens.
  */
 
 @media all and (min-width: 480px) and (max-width: 959px) {
   
+  .header__name-and-slogan {
+    clear: left;
+  }
   
   $zen-columns: 12 !global;
+
+  .views-responsive-grid {
+    @include zen-grid-container(grid-item);
+    .views-column, .views-column-middle {
+       @include zen-grid-item(6, 7);
+    }
+    .views-column-first {
+        @include zen-new-row();
+        @include zen-grid-item(6, 1);
+    }
+    .views-column-last {
+        @include zen-new-row();
+        @include zen-grid-item(6, 1);
+    }
+  }
 
   /**
    * The layout when there is only one sidebar, the left one.
@@ -264,7 +286,7 @@ $zen-auto-include-grid-item-base: false;
    #flexslider-2 {
      max-width: 480px;
      margin-top: -362px;
-     left: 682px;
+     left: 681px;
    }
    
    .footer {

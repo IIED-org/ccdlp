@@ -12,6 +12,8 @@
 
   <header class="header" role="banner">
 
+  <?php print render($page['header']); ?>
+  
     <?php if ($logo): ?>
       <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
     <?php endif; ?>
@@ -45,8 +47,6 @@
         )); ?>
       </nav>
     <?php endif; ?>
-
-    <?php print render($page['header']); ?>
 
   </header>
 
