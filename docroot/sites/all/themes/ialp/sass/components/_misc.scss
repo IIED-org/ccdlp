@@ -195,9 +195,8 @@ ol.search-results {
    #flexslider-2 {
      border: solid 1px $green;
      li {
-       display: block !important;
+       display: block;
        float: none !important;
-       opacity: 1 !important;
        line-height: 1.67em;
        margin: 10px;
        height: 70px;
@@ -220,7 +219,7 @@ ol.search-results {
      a {
        padding: 10px;
        display: block;
-       max-height: 3.5em;
+       max-height: 70px;
      }
    }
 }
