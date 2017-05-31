@@ -1,0 +1,42 @@
+diff --git a/includes/rules.core.inc b/includes/rules.core.inc
+index 559d1cf..8255707 100644
+--- a/includes/rules.core.inc
++++ b/includes/rules.core.inc
+@@ -229,6 +229,10 @@ class RulesEntityController extends EntityAPIControllerExportable {
+    * @see EntityAPIControllerExportable::buildQuery()
+    */
+   protected function buildQuery($ids, $conditions = array(), $revision_id = FALSE) {
++    if (!isset($this->entityInfo['schema_fields_sql']['base table'])) {
++      throw new RulesConfigLoadFailedException();
++    }
++
+     $query = parent::buildQuery($ids, $conditions, $revision_id);
+     $query_conditions =& $query->conditions();
+     foreach ($query_conditions as &$condition) {
+@@ -2782,6 +2786,8 @@ class RulesIntegrityException extends RulesException {
+  */
+ class RulesDependencyException extends RulesIntegrityException {}
+ 
++class RulesConfigLoadFailedException extends RulesException {}
++
+ /**
+  * Determines the plugin to be used for importing a child element.
+  *
+diff --git a/includes/rules.plugins.inc b/includes/rules.plugins.inc
+index 90b306d..2355a77 100644
+--- a/includes/rules.plugins.inc
++++ b/includes/rules.plugins.inc
+@@ -761,7 +761,12 @@ class RulesEventSet extends RulesRuleSet {
+     $events = rules_fetch_data('event_info');
+     $sets = array();
+     // Add all rules associated with this event to an EventSet for caching.
+-    $rules = rules_config_load_multiple(FALSE, array('plugin' => 'reaction rule', 'active' => TRUE));
++    try {
++      $rules = rules_config_load_multiple(FALSE, array('plugin' => 'reaction rule', 'active' => TRUE));
++    }
++    catch (RulesConfigLoadFailedException $e) {
++      $rules = array();
++    }
+ 
+     foreach ($rules as $name => $rule) {
+       foreach ($rule->events() as $event_name) {

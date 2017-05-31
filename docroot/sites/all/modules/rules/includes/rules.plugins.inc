@@ -761,7 +761,12 @@ class RulesEventSet extends RulesRuleSet {
     $events = rules_fetch_data('event_info');
     $sets = array();
     // Add all rules associated with this event to an EventSet for caching.
-    $rules = rules_config_load_multiple(FALSE, array('plugin' => 'reaction rule', 'active' => TRUE));
+    try {
+      $rules = rules_config_load_multiple(FALSE, array('plugin' => 'reaction rule', 'active' => TRUE));
+    }
+    catch (RulesConfigLoadFailedException $e) {
+      $rules = array();
+    }
 
     foreach ($rules as $name => $rule) {
       foreach ($rule->events() as $event_name) {
