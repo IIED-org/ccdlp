@@ -229,10 +229,6 @@ class RulesEntityController extends EntityAPIControllerExportable {
    * @see EntityAPIControllerExportable::buildQuery()
    */
   protected function buildQuery($ids, $conditions = array(), $revision_id = FALSE) {
-    if (!isset($this->entityInfo['schema_fields_sql']['base table'])) {
-      throw new RulesConfigLoadFailedException();
-    }
-
     $query = parent::buildQuery($ids, $conditions, $revision_id);
     $query_conditions =& $query->conditions();
     foreach ($query_conditions as &$condition) {
@@ -2791,8 +2787,6 @@ class RulesIntegrityException extends RulesException {
  * An exception that is thrown for missing module dependencies.
  */
 class RulesDependencyException extends RulesIntegrityException {}
-
-class RulesConfigLoadFailedException extends RulesException {}
 
 /**
  * Determines the plugin to be used for importing a child element.
