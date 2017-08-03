@@ -279,10 +279,13 @@ $drupal_hash_salt = 'jfT4POZmJdvhgciYFQleDpGsSdOkOdlaqEa8l5D70j0';
  * for you.
  */
 
-
+ /* Set base URL and https cache purging on prod environment */
 if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
   $base_url = 'https://www.climatelearningplatform.org';
+  $conf['acquia_purge_https'] = TRUE;
+  $conf['acquia_purge_http'] = FALSE;
 }
+
   // NO trailing slash!
 
 /**
