@@ -15,9 +15,9 @@ features[field][] = node-document-field_document
 features[field][] = node-document-field_image
 features[node][] = document
 
-; Information added by Drupal.org packaging script on 2014-03-18
-version = "7.x-3.3"
+; Information added by Drupal.org packaging script on 2017-05-27
+version = "7.x-3.4"
 core = "7.x"
 project = "pdf_to_imagefield"
-datestamp = "1395169456"
+datestamp = "1495859286"
 
