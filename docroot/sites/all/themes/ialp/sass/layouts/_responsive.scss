@@ -300,19 +300,20 @@ $zen-auto-include-grid-item-base: false;
      }
    }
    
-   /* Cookie compliance banner */
+  /* Cookie compliance banner */
 
    #sliding-popup .popup-content {
      max-width: 90%;
      #popup-text {
+       margin-top: 1em;
        max-width: 75%;
-       line-height: 2em;
+       line-height: 1.5em;
      }
      #popup-buttons {
        margin-bottom: 0;
        max-width: 25%;
        button {
-         margin-top: .5em;
+         margin-top: .667em;
        }
      }
    }
