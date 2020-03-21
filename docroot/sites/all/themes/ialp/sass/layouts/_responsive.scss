@@ -85,7 +85,7 @@ $zen-auto-include-grid-item-base: false;
      width: 4em;
    }
  }
- 
+
  #block-superfish-1 {
    right: 0;
    position: relative;
@@ -111,6 +111,13 @@ $zen-auto-include-grid-item-base: false;
     max-width: 100%;
   }
 
+  .highlighted {
+    .ds-2col-fluid > .group-right,
+    .ds-2col-fluid > .group-left {
+      width: 100%;
+    }
+  }
+
 /* Small screens */
 @media all and (min-width: 480px) {
 
@@ -124,7 +131,7 @@ $zen-auto-include-grid-item-base: false;
           width: 10em;
         }
    }
-   
+
   .main {
     /* Move all the children of .main down to make room. */
     padding-top: $nav-height;
@@ -136,14 +143,19 @@ $zen-auto-include-grid-item-base: false;
     right: 0;
 	  text-align: left;
     background-color: $green;
-    width: $zen-grid-width 
-  }
-  
-  .header__name-and-slogan {
-    float: none;
-    margin-top: 2.5em; 
+    width: $zen-grid-width
   }
 
+  .header__name-and-slogan {
+    float: none;
+    margin-top: 2.5em;
+  }
+  .highlighted {
+    .ds-2col-fluid > .group-right,
+    .ds-2col-fluid > .group-left {
+      width: 50%;
+    }
+  }
 }
 
 
@@ -154,12 +166,14 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for mid-size screens.
  */
 
-@media all and (min-width: 480px) and (max-width: 959px) {
-  
+/* Was 480px */
+
+@media all and (min-width: 740px) and (max-width: 959px) {
+
   .header__name-and-slogan {
     clear: left;
   }
-  
+
   $zen-columns: 12 !global;
 
   .views-responsive-grid {
@@ -174,6 +188,43 @@ $zen-auto-include-grid-item-base: false;
     .views-column-last {
         @include zen-new-row();
         @include zen-grid-item(6, 1);
+    }
+    &.highlighted {
+      .views-row, .views-column-first {
+        clear: none !important;
+      }
+      .views-row-first .views-column-first {
+        @include zen-grid-item(12, 1);
+        .view-mode-highlighted {
+          min-height: 300px;
+        }
+      }
+    }
+    &.secondary {
+      .views-row, .views-column-first {
+        clear: none !important;
+      }
+      .views-row-first {
+        .views-column-first {
+           @include zen-grid-item(6, 1);
+         }
+        .views-column-2 {
+          @include zen-grid-item(6, 7);
+       }
+        .views-column-3 {
+          @include zen-new-row();
+          @include zen-grid-item(6, 1);
+        }
+      }
+      .views-row-2 {
+        .views-column-first {
+           @include zen-grid-item(6, 7);
+         }
+        .views-column-2 {
+          @include zen-new-row();
+          @include zen-grid-item(6, 1);
+         }
+       }
     }
   }
 
@@ -212,14 +263,14 @@ $zen-auto-include-grid-item-base: false;
    */
   .two-sidebars {
     /* Span 12 columns, starting in 1st column from left. */
-    
+
     //Homepage regions
-    
+
     .content-front {
       @include zen-grid-item(12, 1);
       @include zen-grid-container(grid-item);
       @include zen-new-row();
-    
+
       .content-left {
         @include zen-grid-item(4, 1);
       }
@@ -227,9 +278,9 @@ $zen-auto-include-grid-item-base: false;
         @include zen-grid-item(8, 5);
       }
     }
-    
+
     //Inner pages
-    
+
     .main-content {
       @include zen-grid-item(6, 1);
     }
@@ -252,7 +303,7 @@ $zen-auto-include-grid-item-base: false;
       /* Span 6 columns, starting in the 7th column from left. */
       .block:nth-child(even) {
         @include zen-grid-item(6, 7);
-    
+
       }
       /* Span 4 columns, starting in the 1st column from left. */
       .block:nth-child(odd) {
@@ -267,7 +318,7 @@ $zen-auto-include-grid-item-base: false;
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
-   
+
   .preface {
     h1 {
       margin-left: 0;
@@ -275,7 +326,7 @@ $zen-auto-include-grid-item-base: false;
     }
     .views-field-description {
         margin-left: 260px;
-      }    
+      }
     }
   .section-themes, .section-key-partner-countries {
    .preface img {
@@ -288,7 +339,7 @@ $zen-auto-include-grid-item-base: false;
      margin-top: -362px;
      left: 681px;
    }
-   
+
    .footer {
      #block-menu-menu-footer-menu {
        float: right;
@@ -299,7 +350,7 @@ $zen-auto-include-grid-item-base: false;
        margin-top: -3em;
      }
    }
-   
+
   /* Cookie compliance banner */
 
    #sliding-popup .popup-content {
@@ -320,7 +371,7 @@ $zen-auto-include-grid-item-base: false;
 
 
   $zen-columns: 12 !global;
-  
+
   .views-responsive-grid {
     @include zen-grid-container(grid-item);
     .views-column, .views-column-middle {
@@ -334,6 +385,46 @@ $zen-auto-include-grid-item-base: false;
     }
     .views-row {
       @include zen-new-row();
+    }
+    &.highlighted {
+      .views-row, .views-column-first {
+        clear: none !important;
+      }
+      .views-row-first .views-column {
+        @include zen-grid-item(8, 1);
+        .view-mode-highlighted {
+          min-height: 400px;
+        }
+      }
+      &:after {
+        clear: none !important;
+      }
+    }
+    &.secondary {
+      .views-row, .views-column-first {
+        clear: none !important;
+      }
+      .views-row-first {
+        .views-column-first {
+           @include zen-grid-item(4, 9);
+         }
+        .views-column-2 {
+          margin-top: 210px;
+          @include zen-grid-item(4, 9);
+       }
+        .views-column-3 {
+          @include zen-new-row();
+          @include zen-grid-item(4, 1);
+        }
+      }
+      .views-row-2 {
+        .views-column-first {
+           @include zen-grid-item(4, 5);
+         }
+        .views-column-2 {
+          @include zen-grid-item(4, 9);
+         }
+       }
     }
   }
 
@@ -371,24 +462,24 @@ $zen-auto-include-grid-item-base: false;
    * The layout when there are two sidebars.
    */
   .two-sidebars {
-    
+
     /* Top region 4 + 8 columns */
-    
+
     .content-top {
       @include zen-grid-item(12, 1);
       @include zen-grid-container(grid-item);
       @include zen-new-row();
-    
+
       .content-left {
         @include zen-grid-item(4, 1);
       }
-    
+
       .content-right {
         @include zen-grid-item(8, 5);
       }
-      
+
    }
-   
+
     /* Span 4 columns, starting in 1st column from left. */
     .main-content {
       @include zen-grid-item(4, 1);
@@ -404,26 +495,26 @@ $zen-auto-include-grid-item-base: false;
       @include zen-grid-item(4, 9);
     }
   }
-  
+
   .front {
-    
+
     /* Front page content */
-    
+
     .content-front {
       @include zen-grid-item(12, 1);
       @include zen-grid-container(grid-item);
       @include zen-new-row();
-    
+
       .content-left {
         @include zen-grid-item(4, 1);
       }
-    
+
       .content-right {
         @include zen-grid-item(8, 5);
       }
-    
+
    }
- 
+
   }
-  
+
 }
