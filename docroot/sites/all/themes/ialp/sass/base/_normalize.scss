@@ -132,10 +132,10 @@ template {
  */
 
 a:link {
-  color: $green;
+  color: $blue;
 }
 a:visited {
-   color: $logreen;
+   color: $hiblue;
 }
 a:hover,
 a:focus {
@@ -215,6 +215,10 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
+
+h1, h2, h3, h4, h5, h6 {
+  color: $blue;
+}
 
 h1 {
   /* Set the font-size and line-height while keeping a proper vertical rhythm. */

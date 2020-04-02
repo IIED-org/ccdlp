@@ -92,6 +92,7 @@ $zen-auto-include-grid-item-base: false;
    z-index: 1;
    display: inline-block;
    max-width: 80%;
+   padding-left: 1em;
  }
 
 .preface {
@@ -113,12 +114,25 @@ $zen-auto-include-grid-item-base: false;
 
   .highlighted {
     .ds-2col-fluid > .group-right,
-    .ds-2col-fluid > .group-left {
+    .ds-2col-fluid > .group-left,
+    .ds-2col > .group-right,
+    .ds-2col > .group-left {
       width: 100%;
+      float: none;
     }
   }
 
-/* Small screens */
+  .view-mode-highlighted, .view-mode-grid {
+    border: solid 1px $grey;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer !important;
+}
+  .view-mode-highlighted {
+    min-height: 400px;
+  }
+
+/* Everything apart from smallest screens */
 @media all and (min-width: 480px) {
 
   #superfish-1-select {
@@ -126,10 +140,15 @@ $zen-auto-include-grid-item-base: false;
   }
 
   #block-custom-search-blocks-1 {
-     margin-top: -.75em;
-      input.form-text {
-          width: 10em;
-        }
+    margin-top: -1em;
+     input#edit-submit {
+       margin-top: .75em;
+     }
+      input#edit-custom-search-blocks-form-1--2 {
+        width: 8em;
+        position:relative;
+        top: -1.5em;
+      }
    }
 
   .main {
@@ -150,12 +169,7 @@ $zen-auto-include-grid-item-base: false;
     float: none;
     margin-top: 2.5em;
   }
-  .highlighted {
-    .ds-2col-fluid > .group-right,
-    .ds-2col-fluid > .group-left {
-      width: 50%;
-    }
-  }
+
 }
 
 
@@ -168,161 +182,182 @@ $zen-auto-include-grid-item-base: false;
 
 /* Was 480px */
 
-@media all and (min-width: 740px) and (max-width: 959px) {
-
-  .header__name-and-slogan {
-    clear: left;
-  }
-
-  $zen-columns: 12 !global;
-
-  .views-responsive-grid {
-    @include zen-grid-container(grid-item);
-    .views-column, .views-column-middle {
-       @include zen-grid-item(6, 7);
-    }
-    .views-column-first {
-        @include zen-new-row();
-        @include zen-grid-item(6, 1);
-    }
-    .views-column-last {
-        @include zen-new-row();
-        @include zen-grid-item(6, 1);
-    }
-    &.highlighted {
-      .views-row, .views-column-first {
-        clear: none !important;
-      }
-      .views-row-first .views-column-first {
-        @include zen-grid-item(12, 1);
-        .view-mode-highlighted {
-          min-height: 300px;
-        }
-      }
-    }
-    &.secondary {
-      .views-row, .views-column-first {
-        clear: none !important;
-      }
-      .views-row-first {
-        .views-column-first {
-           @include zen-grid-item(6, 1);
-         }
-        .views-column-2 {
-          @include zen-grid-item(6, 7);
-       }
-        .views-column-3 {
-          @include zen-new-row();
-          @include zen-grid-item(6, 1);
-        }
-      }
-      .views-row-2 {
-        .views-column-first {
-           @include zen-grid-item(6, 7);
-         }
-        .views-column-2 {
-          @include zen-new-row();
-          @include zen-grid-item(6, 1);
-         }
-       }
-    }
-  }
-
-  /**
-   * The layout when there is only one sidebar, the left one.
-   */
-  .sidebar-first {
-    /* Span 6 columns, starting in 1st column from left. */
-    .main-content {
-      @include zen-grid-item(6, 1);
-    }
-
-    /* Span 6 columns, starting in 1st column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(6, 7);
-    }
-  }
-
-  /**
-   * The layout when there is only one sidebar, the right one.
-   */
-  .sidebar-second {
-    /* Span 2 columns, starting in 1st column from left. */
-    .main-content {
-      @include zen-grid-item(6, 1);
-    }
-
-    /* Span 1 column, starting in 3rd column from left. */
-    .region-sidebar-second {
-      @include zen-grid-item(6, 7);
-    }
-  }
-
-  /**
-   * The layout when there are two sidebars.
-   */
-  .two-sidebars {
-    /* Span 12 columns, starting in 1st column from left. */
-
-    //Homepage regions
-
-    .content-front {
-      @include zen-grid-item(12, 1);
-      @include zen-grid-container(grid-item);
-      @include zen-new-row();
-
-      .content-left {
-        @include zen-grid-item(4, 1);
-      }
-      .content-right {
-        @include zen-grid-item(8, 5);
-      }
-    }
-
-    //Inner pages
-
-    .main-content {
-      @include zen-grid-item(6, 1);
-    }
-
-    /* Span 6 columns, starting in 7th column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(6, 7);
-    }
-
-    /* Start a new row and span all 3 columns. */
-    .region-sidebar-second {
-      @include zen-grid-item(12, 1);
-      @include zen-grid-container(grid-item); // Since we're making every block in this region be a grid item.
-      @include zen-new-row();
-
-      /* Apply the shared properties of grid items in a single, efficient ruleset. */
-      .block {
-        @include zen-grid-item-base();
-      }
-      /* Span 6 columns, starting in the 7th column from left. */
-      .block:nth-child(even) {
-        @include zen-grid-item(6, 7);
-
-      }
-      /* Span 4 columns, starting in the 1st column from left. */
-      .block:nth-child(odd) {
-        @include zen-grid-item(6, 1);
-        @include zen-new-row();
-      }
-    }
-  }
-}
+// Comment out all mid-size screen stuff!!
+// @media all and (min-width: 740px) and (max-width: 959px) {
+//
+//   .header__name-and-slogan {
+//     clear: left;
+//   }
+//
+//   $zen-columns: 12 !global;
+//
+//   .views-responsive-grid {
+//     @include zen-grid-container(grid-item);
+//     .views-column, .views-column-middle {
+//        @include zen-grid-item(6, 7);
+//     }
+//     .views-column-first {
+//         @include zen-new-row();
+//         @include zen-grid-item(6, 1);
+//     }
+//     .views-column-last {
+//         @include zen-new-row();
+//         @include zen-grid-item(6, 1);
+//     }
+//     &.highlighted {
+//       .views-row, .views-column-first {
+//         clear: none !important;
+//       }
+//       .views-row-first .views-column-first {
+//         @include zen-grid-item(12, 1);
+//         .view-mode-highlighted {
+//           min-height: 300px;
+//         }
+//       }
+//     }
+//     &.secondary {
+//       .views-row, .views-column-first {
+//         clear: none !important;
+//       }
+//       .views-row-first {
+//         .views-column-first {
+//            @include zen-grid-item(6, 1);
+//          }
+//         .views-column-2 {
+//           @include zen-grid-item(6, 7);
+//        }
+//         .views-column-3 {
+//           @include zen-new-row();
+//           @include zen-grid-item(6, 1);
+//         }
+//       }
+//       .views-row-2 {
+//         .views-column-first {
+//            @include zen-grid-item(6, 7);
+//          }
+//         .views-column-2 {
+//           @include zen-new-row();
+//           @include zen-grid-item(6, 1);
+//          }
+//        }
+//     }
+//   }
+//
+//   /**
+//    * The layout when there is only one sidebar, the left one.
+//    */
+//   .sidebar-first {
+//     /* Span 6 columns, starting in 1st column from left. */
+//     .main-content {
+//       @include zen-grid-item(6, 1);
+//     }
+//
+//     /* Span 6 columns, starting in 1st column from left. */
+//     .region-sidebar-first {
+//       @include zen-grid-item(6, 7);
+//     }
+//   }
+//
+//   /**
+//    * The layout when there is only one sidebar, the right one.
+//    */
+//   .sidebar-second {
+//     /* Span 2 columns, starting in 1st column from left. */
+//     .main-content {
+//       @include zen-grid-item(6, 1);
+//     }
+//
+//     /* Span 1 column, starting in 3rd column from left. */
+//     .region-sidebar-second {
+//       @include zen-grid-item(6, 7);
+//     }
+//   }
+//
+//   /**
+//    * The layout when there are two sidebars.
+//    */
+//   .two-sidebars {
+//     /* Span 12 columns, starting in 1st column from left. */
+//
+//     //Homepage regions
+//
+//     .content-front {
+//       @include zen-grid-item(12, 1);
+//       @include zen-grid-container(grid-item);
+//       @include zen-new-row();
+//
+//       .content-left {
+//         @include zen-grid-item(4, 1);
+//       }
+//       .content-right {
+//         @include zen-grid-item(8, 5);
+//       }
+//     }
+//
+//     //Inner pages
+//
+//     .main-content {
+//       @include zen-grid-item(6, 1);
+//     }
+//
+//     /* Span 6 columns, starting in 7th column from left. */
+//     .region-sidebar-first {
+//       @include zen-grid-item(6, 7);
+//     }
+//
+//     /* Start a new row and span all 3 columns. */
+//     .region-sidebar-second {
+//       @include zen-grid-item(12, 1);
+//       @include zen-grid-container(grid-item); // Since we're making every block in this region be a grid item.
+//       @include zen-new-row();
+//
+//       /* Apply the shared properties of grid items in a single, efficient ruleset. */
+//       .block {
+//         @include zen-grid-item-base();
+//       }
+//       /* Span 6 columns, starting in the 7th column from left. */
+//       .block:nth-child(even) {
+//         @include zen-grid-item(6, 7);
+//
+//       }
+//       /* Span 4 columns, starting in the 1st column from left. */
+//       .block:nth-child(odd) {
+//         @include zen-grid-item(6, 1);
+//         @include zen-new-row();
+//       }
+//     }
+//   }
+// }
 
 /**
  * Use 12 grid columns for larger screens.
  */
 @media all and (min-width: 960px) {
 
+ .view-mode-highlighted, .view-mode-grid {
+  min-height: 175px;
+ }
+
+  .highlighted {
+    .ds-2col-fluid > .group-right,
+    .ds-2col-fluid > .group-left {
+      width: 50%;
+      float: left;
+    }
+    .ds-2col > .group-left {
+      width: 33.3%;
+      float: left;
+    }
+    .ds-2col > .group-right {
+      width: 60%;
+      padding-left: 30px;
+      float: left;
+    }
+  }
+
   .preface {
     h1 {
-      margin-left: 0;
-      text-align: center;
+      margin-left: 1em;
     }
     .views-field-description {
         margin-left: 260px;
@@ -393,7 +428,7 @@ $zen-auto-include-grid-item-base: false;
       .views-row-first .views-column {
         @include zen-grid-item(8, 1);
         .view-mode-highlighted {
-          min-height: 400px;
+          min-height: 385px;
         }
       }
       &:after {
