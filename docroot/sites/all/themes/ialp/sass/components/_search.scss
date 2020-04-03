@@ -17,13 +17,36 @@
 
 /* Full width bar */
 #block-custom-search-blocks-2,
-#block-views-exp-taxonomy-search-page-2 {
-  input.form-text {
-     width: 90%;
-     margin: 0 auto;
+#block-views-exp-taxonomy-search-page-2,
+#views-exposed-form-taxonomy-search-page-7 {
+  display: inline;
+  position: relative;
+  input.form-text,  {
+     width: 320px;
+     height: 3em;
+     margin: 0;
+     padding: 10px;
+     text-align: left;
+     background-color: transparent;
+     &::placeholder { 
+      content: "Quick search";
+      color: $higrey;
+     }
    }
-  h2 {
-    text-align: center;
+  #edit-actions--2 {
+    display: block;
+    position: relative;
+    margin: -3.5em 0 0 64%;
+  }
+  #edit-submit-taxonomy-search {
+    margin: 1em 0em 0 -50px;
+    width: 100px;
+    position: relative;
+    background: url(../images/search-solid.png) left top no-repeat;
+    border: none;
+    outline: none;
+    color: transparent;
+
   }
 }
 
@@ -31,6 +54,24 @@
   float: none;
 }
 
+.page-resources {
+  .view-header {
+    padding: 0 0 .5em 0;
+    border-bottom: 1px solid $grey;
+  }
+  .views-row {
+    border-bottom: 1px solid $higrey;
+    margin: 1em 0;
+    padding: .5em;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0,0,0,.2);
+    } 
+  }
+  .facetapi-facetapi-checkbox-links {
+    padding-left: 0;
+  }
+}
 
 a#searchme:hover, a#searchme:active {
   background-color: transparent;

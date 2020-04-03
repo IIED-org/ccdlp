@@ -1,6 +1,5 @@
 .preface {
   background-color: $page;
-  text-align: center;
   padding: 10px 0 0 0;
   margin-bottom: 1em;
   h1 {
@@ -16,11 +15,13 @@
   }
   .banner {
     background-color: $khaki;
-    padding: 20px;
+    padding: 20px 5rem;
     margin: auto;
     margin-bottom: 1rem;
     height: 50px;
     margin: 0 20px;
+    color: $green;
+    line-height: 1.5rem;
   }
   .banner:before {
     border-color: $khaki transparent;
