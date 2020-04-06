@@ -1,13 +1,14 @@
 // #block-search-form,
-// #block-search-api-page-search-api, 
+// #block-search-api-page-search-api,
 //#block-custom-search-blocks-1,
 
-#block-custom-search-blocks-1 {
+#block-custom-search-blocks-1,
+#block-block-133 {
   text-align: right;
-  display: inline-block; 
+  display: inline-block;
   float: right;
    div, form {
-     display: inline-block; 
+     display: inline-block;
   }
   a, img, input#form-submit
   {
@@ -18,7 +19,8 @@
 /* Full width bar */
 #block-custom-search-blocks-2,
 #block-views-exp-taxonomy-search-page-2,
-#views-exposed-form-taxonomy-search-page-7 {
+#views-exposed-form-taxonomy-search-page-7,
+#views-exposed-form-taxonomy-search-page-7  {
   display: inline;
   position: relative;
   input.form-text,  {
@@ -28,7 +30,7 @@
      padding: 10px;
      text-align: left;
      background-color: transparent;
-     &::placeholder { 
+     &::placeholder {
       content: "Quick search";
       color: $higrey;
      }
@@ -50,11 +52,8 @@
   }
 }
 
-.page-search .views-exposed-form .views-exposed-widget {
-  float: none;
-}
-
-.page-resources {
+.page-resources,
+.page-search {
   .view-header {
     padding: 0 0 .5em 0;
     border-bottom: 1px solid $grey;
@@ -66,7 +65,7 @@
     cursor: pointer;
     &:hover {
       background-color: rgba(0,0,0,.2);
-    } 
+    }
   }
   .facetapi-facetapi-checkbox-links {
     padding-left: 0;

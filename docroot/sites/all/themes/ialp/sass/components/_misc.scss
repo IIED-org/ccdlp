@@ -1,3 +1,9 @@
+blockquote {
+  border-left: solid 2px $logreen;
+  margin: 0;
+  padding-left: 2em;
+}
+
 /* Cover with material type */
 
 .mtype {
@@ -20,7 +26,10 @@
 .view-id-links img.shrinktheweb,
 .view-mode-grid .field-name-field-videoembed,
 .view-mode-grid img.shrinktheweb,
-.front .views-responsive-grid .views-field-field-image {
+.front .views-responsive-grid .views-field-field-image,
+.news-events .views-responsive-grid .views-field-field-image,
+.view-mode-search_result .field-name-field-blog-image,
+ {
   float: left;
   margin: 0 10px 0 0;
   width: 120px;

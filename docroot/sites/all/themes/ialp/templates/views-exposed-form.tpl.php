@@ -1,3 +1,30 @@
+<script type="text/javascript">
+   (function ($) {
+    $(document).ready(function() {
+
+   var swap_val = [];
+
+   $(".form-text").each(function(i){
+      $element = $(this);
+      var $label = $("label[for='"+$element.attr('id')+"']");
+      $label.addClass('hidden');
+      swap_val[i] = $label.html().trim();
+      $(this).val(swap_val[i]);
+      $(this).focus(function(){
+           if ($(this).val() == swap_val[i]) {
+               $(this).val("");
+           }
+      }).blur(function(){
+           if ($.trim($(this).val()) == "") {
+               $(this).val(swap_val[i]);
+           }
+      });
+   });
+
+
+   });
+   })(jQuery);
+</script>
 <?php
 
 /**
