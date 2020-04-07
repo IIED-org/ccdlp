@@ -53,8 +53,8 @@ $strict-normalize: false;
 // use in the normalize.scss file.
 // @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
 
-$base-font-size:   14px; // The font size set on the root html element.
-$base-line-height: 20px; // This line-height determines the basic unit of vertical rhythm.
+$base-font-size:   16px; // The font size set on the root html element.
+$base-line-height: 22px; // This line-height determines the basic unit of vertical rhythm.
 
 // The length unit in which to output vertical rhythm values.
 // Supported values: px, em, rem.
@@ -62,7 +62,7 @@ $rhythm-unit: 'rem';
 
 $h1-font-size: 2    * $base-font-size;
 $h2-font-size: 1.5  * $base-font-size;
-$h3-font-size: 1.17 * $base-font-size;
+$h3-font-size: 1.25 * $base-font-size;
 $h4-font-size: 1    * $base-font-size;
 $h5-font-size: 0.83 * $base-font-size;
 $h6-font-size: 0.67 * $base-font-size;
@@ -104,12 +104,14 @@ $textcolor: #333333;
 $grey: #CCCCCC;
 $midgrey: #EEEEEE;
 $higrey: #F1F1F1;
-$blue: #066B81;
+$blue: #2C55A2;
+$hiblue: #004183;
 $marine: #078B7F;
 $green: #007449;
-$higreen: #00764E;
+$higreen: #008856;
 $logreen: #06810E;
-$khaki:  #e0e4cc;
+$khaki:  #E0E4CC;
+$bone: $khaki;
 
 // The amount lists, blockquotes and comments are indented.
 $indent-amount: 2 * $base-font-size;
