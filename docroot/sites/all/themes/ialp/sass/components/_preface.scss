@@ -6,40 +6,8 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-  p {
-    margin-bottom: -1.33em;
-    padding: 0 10px 0 0;
-  }
   .views-field-description {
       text-align: left;
-  }
-  .banner {
-    background-color: $khaki;
-    padding: 20px 5rem;
-    margin: auto;
-    margin-bottom: 1rem;
-    height: 50px;
-    margin: 0 20px;
-    color: $green;
-    line-height: 1.5rem;
-  }
-  .banner:before {
-    border-color: $khaki transparent;
-    left: 0;
-    border-width: 45px 0 45px 20px;
-  }
-  .banner:after {
-    border-color: $khaki transparent;
-    right: 0;
-    border-width: 45px 20px 45px 0;
-  }
-  .banner:before, .banner:after {
-    content: '';
-    position: absolute;
-    height: 0;
-    width: 0;
-    border-style: solid;
-    top: 0;
   }
 }
 

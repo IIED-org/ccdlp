@@ -103,8 +103,18 @@ $zen-auto-include-grid-item-base: false;
    img {
       text-align: center;
       float: none;
+    }
   }
-}
+.banner {
+    background-color: $khaki;
+    padding: 20px 5rem;
+    margin: auto;
+    margin-bottom: 1rem;
+    min-height: 50px;
+    margin: 0 20px;
+    color: $green;
+    line-height: 1.5rem;
+  }
 }
   #flexslider-2 {
     left: 0;
@@ -366,6 +376,24 @@ $zen-auto-include-grid-item-base: false;
     .views-field-description {
         margin-left: 260px;
       }
+  .banner:before {
+    border-color: $khaki transparent;
+    left: 0;
+    border-width: 45px 0 45px 20px;
+    }
+  .banner:after {
+    border-color: $khaki transparent;
+    right: 0;
+    border-width: 45px 20px 45px 0;
+  }
+  .banner:before, .banner:after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-style: solid;
+    top: 0;
+  }
     }
   .section-themes, .section-key-partner-countries {
    .preface img {

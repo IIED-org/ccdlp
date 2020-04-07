@@ -20,9 +20,24 @@
   margin-bottom: 1rem;
 }
 
-.content-bottom .block {
-  display: inline-block;
-  text-align: center;
-  width: 24%;
-  margin: 1em 0;
+.content-bottom {
+  #block-block-134,
+  #block-block-135,
+  #block-block-136,
+  #block-block-137 {
+    display: inline-block;
+    text-align: center;
+    width: 24%;
+    margin: 1em 0;
+  }
+  .objective 
+    img {
+      height: 160px;
+      width: 160px;
+      border: solid 1px $logreen;
+      border-radius: 160px;
+   &:hover {
+       background-color: $higrey;
+   }
+  }
 }
