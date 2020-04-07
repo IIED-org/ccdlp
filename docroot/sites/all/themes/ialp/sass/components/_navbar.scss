@@ -3,6 +3,7 @@
  * Navigation bar.
  */
 .main-navigation {
+  padding-left: 0;
   /* Prevent overlapping with main div. */
   .block {
     margin-bottom: 0;
@@ -32,20 +33,20 @@
       a {
        display: block;
        text-decoration: none;
-       padding: 1em 0 1em 5px;
+       padding: 1em .75em 1em .75em;
+       border-right: 1px solid $page;
        
        &:link,
        &:visited {
          color: white;
         }
        &:hover,
-       &:active {
+       &:active,
+       &.active {
          color: white;
          background-color: $higreen;
        }
-       &::after {
-         content: " |";
-       }
+       
       }
     }
   }
