@@ -12,13 +12,25 @@
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
 
-
 // To understand behaviors, see https://drupal.org/node/756722#behaviors
-Drupal.behaviors.my_custom_behavior = {
+Drupal.behaviors.ialp = {
   attach: function(context, settings) {
-
-    // Place your code here.
-
+    $('#search-toggle').click(function(e) {
+      e.stopPropagation();
+      $('#block-views-exp-taxonomy-search-page-2').animate({
+          height: 'toggle',
+          visibility: 'visible',
+        },500);
+    });
+    $(document).click(function(e) {
+      $target = $(e.target);
+      if(!$('body').hasClass('page-search'))   {
+        if(!$target.closest('#block-views-exp-taxonomy-search-page-2').length &&
+        $('#block-views-exp-taxonomy-search-page-2').is(":visible")) {
+          $('#block-views-exp-taxonomy-search-page-2').hide();
+        }
+      }
+    });
   }
 };
 

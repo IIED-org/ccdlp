@@ -19,12 +19,11 @@
 /* Full width bar */
 #block-custom-search-blocks-2,
 #block-views-exp-taxonomy-search-page-2,
-#views-exposed-form-taxonomy-search-page-7,
 #views-exposed-form-taxonomy-search-page-7  {
   display: inline;
   position: relative;
-  input.form-text,  {
-     width: 320px;
+  input.form-text  {
+     min-width: 280px;
      height: 3em;
      margin: 0;
      padding: 10px;
@@ -35,16 +34,17 @@
       color: $higrey;
      }
    }
+
   #edit-actions--2 {
     display: block;
     position: relative;
     margin: -3.5em 0 0 64%;
   }
   #edit-submit-taxonomy-search {
-    margin: 1em 0em 0 -50px;
-    width: 100px;
+    margin: 15px 45px 0 -45px;
+    width: 90x;
     position: relative;
-    background: url(../images/search-solid.png) left top no-repeat;
+    background: transparent url(../images/search-solid.png) scroll left top no-repeat;
     border: none;
     outline: none;
     color: transparent;
@@ -70,6 +70,22 @@
   .facetapi-facetapi-checkbox-links {
     padding-left: 0;
   }
+}
+
+#block-views-exp-taxonomy-search-page-2 {
+  display: none;
+  margin: -1em 0 0 0;
+  text-align: left;
+  input.form-text  {
+    width: 100%;
+  }
+  #edit-submit-taxonomy-search {
+    margin: 1em 45px 0 -75px;
+  }
+}
+
+.page-search #block-views-exp-taxonomy-search-page-2 {
+  display: block;
 }
 
 a#searchme:hover, a#searchme:active {
@@ -115,8 +131,24 @@ ul.facetapi-facetapi-checkbox-links li.leaf {
   width: 90%;
 }
 
-nav.mm-menu.mm-fresh.mm-vertical li.mm-opened > ul,
-nav.mm-menu.mm-fresh > .mm-list {
+.mm-list, .mmenu-expanded,
+.mmenu-nav.mm-basic > .mm-list li.mmenu-expanded .mmenu-block-expanded,
+.mmenu-nav.mm-basic > .mm-list li  {
+  background: $khaki !important;
+  text-shadow: none;
+  color: $blue;
+  border-bottom: none;
+}
+
+li.mmenu-collapsed {
+  height: 40px;
+  &.mm-opened {
+    height: auto !important;
+  }
+}
+
+nav.mm-menu.mm-basic.mm-vertical li.mm-opened > ul,
+nav.mm-menu.mm-basic > .mm-list {
   padding: 0;
   margin: 0;
 }
