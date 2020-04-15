@@ -4,7 +4,7 @@
 
    var swap_val = [];
 
-   $(".form-text").each(function(i){
+   $(".views-exposed-form .form-text").each(function(i){
       $element = $(this);
       var $label = $("label[for='"+$element.attr('id')+"']");
       swap_val[i] = $label.html().trim();
