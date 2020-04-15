@@ -146,7 +146,7 @@ function ialp_user_list($variables) {
       // $items[] = theme('username', array('account' => $user));
 
       // $picture = theme_get_setting('toggle_comment_user_picture') ? theme('user_picture', array('account' => $user)) : '';
-      
+
       $user = user_load($user->uid);
       if ($user->picture){
           $picture = theme(
@@ -163,9 +163,9 @@ function ialp_user_list($variables) {
       else {
         $picture = '<img src="/sites/default/files/pictures/avatar-generic.gif" style="width:48px; height:48px;" />';
       }
-        
+
       $username = theme('username', array('account' => $user));
-      $items[] = l(  
+      $items[] = l(
     $picture,
     'user/' . $user->uid,
     array(
@@ -175,7 +175,7 @@ function ialp_user_list($variables) {
           'class' => array('user-picture')
         )
     )
-); 
+);
 
 // . '<br />' . $username;
     }
@@ -201,10 +201,29 @@ function ialp_form_user_login_block_alter(&$form, &$form_state, $form_id) {
   $form['links'] = array('#markup' => theme('item_list', array('items' => $items)));
 
   $form['name']['#title'] = t('Username or email address');
-  
+
   return $form;
 }
 
 function ialp_preprocess_user_login(&$vars) {
    $vars['form']['name']['#title'] = t('Username or email address');
+}
+
+/**
+* hook_form_FORM_ID_alter
+*/
+function ialp_form_views_exposed_form_alter(&$form, &$form_state) {
+    //dprint_r($form);
+    // $form['views_exposed_form__taxonomy_search__page_2']['#title'] = t('Search'); // Change the text on the label element
+    // $form['views_exposed_form__taxonomy_search__page_2']['#title_display'] = 'invisible'; // Toggle label visibilty
+   $form['search_site']['#size'] = 128;  // define size of the textfield
+    // $form['views_exposed_form__taxonomy_search__page_2'][  '#default_value'] = t('Search this site'); // Set a default value for the textfield
+//   $form['actions']['submit']['#type'] = 'image_button';
+//   $form['actions']['submit']['#src'] = base_path() . path_to_theme() . '/images/search-solid.png';
+    //
+    //   // Prevent user from searching the default text
+    // $form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search this site'){ alert('Please enter a search'); return false; }";
+
+    // Alternative (HTML5) placeholder attribute instead of using the javascript
+    //$ form['search_site']['#attributes']['placeholder'] = t('Search this site');
 }

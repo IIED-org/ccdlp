@@ -348,6 +348,9 @@ $zen-auto-include-grid-item-base: false;
 
   $zen-columns: 12 !global;
 
+  .hide-lg {
+    display: none;
+  }
  .view-mode-highlighted, .view-mode-grid {
   min-height: 175px;
  }
