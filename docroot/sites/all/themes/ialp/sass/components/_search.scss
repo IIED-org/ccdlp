@@ -144,7 +144,8 @@ a#searchme:hover, a#searchme:active {
 
 /* Checkbox facets */
 
-ul.facetapi-facetapi-checkbox-links li.leaf {
+ul.facetapi-facetapi-checkbox-links li.leaf,
+.facetapi-active {
   list-style: none;
   a {
     text-decoration: none;

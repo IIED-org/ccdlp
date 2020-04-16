@@ -227,3 +227,7 @@ function ialp_form_views_exposed_form_alter(&$form, &$form_state) {
     // Alternative (HTML5) placeholder attribute instead of using the javascript
     //$ form['search_site']['#attributes']['placeholder'] = t('Search this site');
 }
+
+function ialp_facetapi_deactivate_widget($variables) {
+  return '<i class="fa fa-times-circle"></i>';
+}
