@@ -26,7 +26,7 @@
      min-width: 280px;
      height: 3em;
      margin: 0;
-     padding: 10px;
+     padding: 10px 10px 10px 10px;
      text-align: left;
      background-color: transparent;
      &::placeholder {
@@ -35,22 +35,37 @@
      }
    }
 
+  #views-exposed-form-taxonomy-search-page-2 input.form-text  {
+        padding: 10px 10px 0 10px;
+  }
+
+    .form-item-search-site  input#edit-search-site {
+     border: none;
+     border-bottom: 1px solid;
+     }
+     .form-item-search-site  input#edit-search-site:focus {
+       outline: none;
+     }
+
   #edit-actions--2 {
     display: block;
     position: relative;
     margin: -3.5em 0 0 64%;
   }
   #edit-submit-taxonomy-search {
-    margin: 15px 45px 0 -45px;
+  /*  margin: 15px 45px 0 -45px; */
     width: 90x;
     position: relative;
     background: transparent url(../images/search-solid.png) scroll left top no-repeat;
     border: none;
     outline: none;
     color: transparent;
-
   }
 }
+#views-exposed-form-taxonomy-search-page-7 #edit-submit-taxonomy-search {
+    margin: 13px 0 0 -30px;
+}
+
 
 .page-resources,
 .page-search {
@@ -64,7 +79,7 @@
     padding: .5em;
     cursor: pointer;
     &:hover {
-      background-color: rgba(0,0,0,.2);
+      background-color: $higrey; /* rgba(0,0,0,.2) */
     }
   }
   .facetapi-facetapi-checkbox-links {
@@ -73,19 +88,30 @@
 }
 
 #block-views-exp-taxonomy-search-page-2 {
+  border-bottom: 3px solid $green;
   display: none;
-  margin: -1em 0 0 0;
+  margin: 0 0 1em 0;
   text-align: left;
+  padding: 0px 15px 20px 15px;
   input.form-text  {
     width: 100%;
   }
   #edit-submit-taxonomy-search {
-    margin: 1em 45px 0 -75px;
+    /* margin: 1em 45px 0 -75px; */
   }
 }
 
 .page-search #block-views-exp-taxonomy-search-page-2 {
   display: block;
+}
+
+  #views-exposed-form-taxonomy-search-page-2 {
+.views-exposed-form .views-exposed-widget {
+    display: flex;
+}
+.views-exposed-form .views-exposed-widget .form-submit { /* views css override */
+    margin-top: 1rem;
+}
 }
 
 a#searchme:hover, a#searchme:active {
@@ -134,10 +160,11 @@ ul.facetapi-facetapi-checkbox-links li.leaf {
 .mm-list, .mmenu-expanded,
 .mmenu-nav.mm-basic > .mm-list li.mmenu-expanded .mmenu-block-expanded,
 .mmenu-nav.mm-basic > .mm-list li  {
-  background: $khaki !important;
+  background: $higrey !important;
   text-shadow: none;
-  color: $blue;
+  color: $textcolor !important;
   border-bottom: none;
+  border-top: none;
 }
 
 li.mmenu-collapsed {
@@ -149,7 +176,7 @@ li.mmenu-collapsed {
 
 nav.mm-menu.mm-basic.mm-vertical li.mm-opened > ul,
 nav.mm-menu.mm-basic > .mm-list {
-  padding: 0;
+  padding: 20px 0;
   margin: 0;
 }
 
@@ -170,4 +197,17 @@ nav.mm-menu.mm-basic > .mm-list {
   p {
     margin: rhythm(.5) 0;
   }
+}
+
+.mm-list a.mm-subopen + a, .mm-list a.mm-subopen + span {
+    font-weight: bold;
+}
+
+#filters {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.mm-menu .mm-list {
+  padding: 0;
 }

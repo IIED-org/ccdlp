@@ -35,7 +35,7 @@ blockquote {
   width: 120px;
   height: auto;
    img {
-     border: solid 1px $higreen;
+     border: solid 1px $grey;
    }
 }
 
@@ -174,6 +174,9 @@ ol.search-results {
   font-weight: 600;
 }
 
+.views-column h4 {
+    overflow: hidden;
+}
 
 
 /* Home page and landing page views */
@@ -240,6 +243,7 @@ ol.search-results {
 .page-key-partner-countries {
   h2.block__title, .view-header {
     padding-left: 1rem;
+    color: $textcolor;
     p {
       font-weight: bold;
     }
@@ -280,6 +284,18 @@ ol.search-results {
 
 }
 
+.views-responsive-grid.highlighted .views-row-first .views-column {
+  .group-right {
+    margin-top: 1em;
+  }
+  h3 {
+    margin: 1em 0;
+    line-height: 2rem;
+  }
+  p {
+    margin-top: 0;
+  }
+}
 
 /* Forums */
 
@@ -446,4 +462,9 @@ ol.search-results {
      background: #dfdfdf;
      color: #777777;
    }
+}
+
+/* block colours */
+#block-block-146 {
+  background: $higrey;
 }

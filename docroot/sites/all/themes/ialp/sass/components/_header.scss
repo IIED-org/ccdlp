@@ -36,7 +36,7 @@
 .header__site-link {
   &:link,
   &:visited {
-    color: $blue;
+    color: $textcolor;
     text-decoration: none;
   }
 
@@ -51,6 +51,12 @@
 .header__site-slogan {
   margin: 0;
 }
+
+h1.header__site-name {
+        font-size: 28px;
+        font-weight:100;
+        line-height: 1.75rem;
+    }
 
 /* The secondary menu (login, etc.) */
 .header__secondary-menu {
