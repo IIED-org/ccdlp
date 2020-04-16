@@ -4,4 +4,4 @@ docroot/sites/*/files
 docroot/sites/*/private
 
 # Ignore sass-cache directory
-.sass-cache
+.sass-cache/
