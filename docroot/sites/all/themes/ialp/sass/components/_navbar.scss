@@ -33,9 +33,9 @@
       a {
        display: block;
        text-decoration: none;
-       padding: 1em .75em 1em .75em;
-       border-right: 1px solid $page;
-       
+       padding: 1em;
+       border-right: 1px solid $darkgreen;
+
        &:link,
        &:visited {
          color: white;
@@ -46,7 +46,7 @@
          color: white;
          background-color: $higreen;
        }
-       
+
       }
     }
   }
@@ -63,4 +63,3 @@
 .logoright {
   float: right;
 }
-
