@@ -100,6 +100,33 @@ blockquote {
   }
 }
 
+.section-in-country {
+  #block-views-key-partner-country-block-3 {
+    background: $higrey;
+    padding: 1em;
+    .views-row {
+      background: $page;
+      padding: 1em;
+      margin: 1em 0;
+      .node-blog {
+        cursor: pointer;
+      }
+      .field-name-title h4 {
+        margin-top: 0;
+      }
+      .field-type-image {
+         float: left;
+         margin: 0 10px 10px 0;
+         width: 350px;
+         height: auto;
+          img {
+            border: solid 1px $grey;
+          }
+      }
+    }
+  }
+}
+
 /*
  Display suite cards (highlighted and grid displays)
 */
