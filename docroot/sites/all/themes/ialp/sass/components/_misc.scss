@@ -324,6 +324,17 @@ ol.search-results {
   }
 }
 
+.views-responsive-grid.round {
+  .views-field-name {
+    margin-bottom: 1em;
+  }
+  text-align: center;
+  img {
+    border-radius: 85px; //using square_thumbnail style
+    border: solid 1px $green;
+  }
+}
+
 /* Forums */
 
 .view-id-recent_content {
