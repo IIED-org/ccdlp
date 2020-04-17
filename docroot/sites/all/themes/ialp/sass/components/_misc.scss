@@ -206,6 +206,19 @@ ol.search-results {
 }
 
 
+.view-mode-highlighted, .view-mode-grid {
+    border: solid 1px $grey;
+    margin: 10px;
+    padding: 5px 7px;
+    cursor: pointer !important;
+    &:hover {
+      background: $higrey;
+    }
+}
+  .view-mode-highlighted {
+    min-height: 400px;
+  }
+
 /* Home page and landing page views */
 
 .front {
