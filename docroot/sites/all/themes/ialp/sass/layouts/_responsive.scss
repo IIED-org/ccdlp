@@ -123,13 +123,18 @@ $zen-auto-include-grid-item-base: false;
     max-width: 100%;
   }
 
-  .highlighted {
+  .highlighted, .node-two-columns {
+    &.ds-2col-fluid > .group-right,
+    &.ds-2col-fluid > .group-left,
     .ds-2col-fluid > .group-right,
     .ds-2col-fluid > .group-left,
     .ds-2col > .group-right,
     .ds-2col > .group-left {
       width: 100%;
       float: none;
+      .media-float-right {
+        float: left;
+      }
     }
   }
 
@@ -174,8 +179,6 @@ $zen-auto-include-grid-item-base: false;
   }
 
 }
-
-
 
 } // End of @if $zen-switch-direction == false
 
@@ -346,12 +349,18 @@ $zen-auto-include-grid-item-base: false;
   min-height: 175px;
  }
 
-  .highlighted {
+  .highlighted, .node-two-columns {
+    &.ds-2col-fluid > .group-right,
+    &.ds-2col-fluid > .group-left,
     .ds-2col-fluid > .group-right,
     .ds-2col-fluid > .group-left {
       width: 50%;
       float: left;
+      .media-float-right {
+          float: right;
+      }
     }
+
     .ds-2col > .group-left {
       width: 33.3%;
       float: left;
