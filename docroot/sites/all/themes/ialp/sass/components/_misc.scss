@@ -127,6 +127,12 @@ blockquote {
   }
 }
 
+.section-objectives {
+  .preface h1 {
+    display: none; //Hide title on views page
+  }
+}
+
 /*
  Display suite cards (highlighted and grid displays)
 */
