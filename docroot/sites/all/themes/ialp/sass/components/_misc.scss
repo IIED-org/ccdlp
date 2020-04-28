@@ -97,19 +97,26 @@ blockquote {
   h4 {
     line-height: 1.5rem;
     margin: .5rem .5rem .5rem 0;
+    color: $blue;
   }
 }
 
 .section-in-country {
   #block-views-key-partner-country-block-3 {
     background: $higrey;
-    padding: 1em;
+    padding: 1em 1em 0 1em;
     .views-row {
       background: $page;
       padding: 1em;
       margin: 1em 0;
       .node-blog {
         cursor: pointer;
+          h4 {
+          color: $blue;
+        }
+      }
+      .node-blog:hover {
+        background: $higrey;
       }
       .field-name-title h4 {
         margin-top: 0;
@@ -225,6 +232,17 @@ ol.search-results {
     min-height: 400px;
   }
 
+/*  blocks home and in country  */
+
+  .view-home .views-row-2 .node-two-columns {
+    background: $higrey;
+    padding: 1em;
+  }
+
+  .view-home .node-two-columns {
+    margin-bottom: 3em;
+  }
+
 /* Home page and landing page views */
 
 .front {
@@ -337,6 +355,7 @@ ol.search-results {
   h3 {
     margin: 1em 0;
     line-height: 2rem;
+    color: $blue;
   }
   p {
     margin-top: 0;
@@ -414,23 +433,44 @@ ol.search-results {
 
 .footer {
     background-color: $higrey;
-    padding-top: 1em;
+    padding-left: 0;
+    padding-right: 0;
+  .footer-top {
+    background-color: $khaki;
+    padding: 10px;
+  }
+  .footer-bottom {
+      padding: 10px;
+    .footer-links {
+      float: right;
+    }
+    .footer-credit {
+      display: inline-block;
+    }
+  }
   .views-responsive-grid {
     img {
-      float: left;
       margin: 0 10px 10px 0;
       vertical-align: middle;
+      padding: 0 20px;
     }
     address {
       padding-top: 1em;
       font-style: normal;
       font-size: 85%;
-      line-height: 1.25em;
+      line-height: 1.5em;
+      display: flex;
+      align-items: center;
     }
   }
   ul {
     font-weight: bold;
   }
+}
+
+.footer-logo, footer-text {
+    vertical-align: middle;
+    min-width: 290px;
 }
 
 .view-id-user_groups {
@@ -523,5 +563,58 @@ ol.search-results {
 
 /* block colours */
 #block-block-146 {
+  background: $higrey;
+}
+
+@media (max-width: 768px) {
+  .footer .views-responsive-grid address {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .footer-bottom .footer-links {
+    float: left !important;
+    padding: 15px 0;
+  }
+}
+
+.sign-up {
+  background: url(/sites/default/files/envelope-background.png) no-repeat $green;
+  color: $page;
+  padding: 1em;
+}
+
+.node-type-resource fieldset {
+    border-left: 4px solid $khaki;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 0 0 0 10px;
+    margin-bottom: 3em;
+}
+
+.comment_forbidden {
+    visibility: hidden;
+}
+
+/* Mailchimp sign up form */
+
+#mc_embed_signup {
+  background: none !important;
+}
+.sign-up a {
+  color: $page !important;
+}
+
+/*  utility */
+.mb-1 {
+  margin-bottom: 1em;
+}
+.mb-2 {
+  margin-bottom: 2em;
+}
+.mb-3 {
+  margin-bottom: 3em;
+}
+.grey-background {
   background: $higrey;
 }

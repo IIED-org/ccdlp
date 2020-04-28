@@ -54,7 +54,6 @@
   }
   #edit-submit-taxonomy-search {
   /*  margin: 15px 45px 0 -45px; */
-    width: 90x;
     position: relative;
     background: transparent url(../images/search-solid.png) scroll left top no-repeat;
     border: none;
@@ -107,9 +106,14 @@
 }
 
   #views-exposed-form-taxonomy-search-page-2 {
-.views-exposed-form .views-exposed-widget {
+.views-exposed-form {
     display: flex;
+    padding: 0;
+    #edit-search-site-wrapper {
+    width: 85%;
 }
+}
+
 .views-exposed-form .views-exposed-widget .form-submit { /* views css override */
     margin-top: 1rem;
 }
