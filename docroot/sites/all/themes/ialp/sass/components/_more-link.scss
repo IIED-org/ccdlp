@@ -4,12 +4,11 @@
  */
 
 .more-link a,
-.field-name-more-link,
-.pager--infinite-scroll li a {
+.field-name-more-link {
   text-align: center; /* LTR */
   border: solid 1px $green;
   border-radius: 10px;
-  padding: 5px;
+  padding: 12px;
   margin: auto;
   display: block;
   width: 6.7em;
@@ -35,4 +34,27 @@
   background-position: 0 50%; /* LTR */
   background-repeat: no-repeat;
   padding: 1px 0 1px 20px; /* LTR */
+}
+
+.pager--infinite-scroll {
+  position: relative;
+  bottom: -15px;
+  li a {
+    background: $higrey;
+    text-align: center; /* LTR */
+    border-radius: 30px;
+    padding: 0 10px 10px 10px;
+    margin: auto;
+    display: block;
+    width: 6.7em;
+    font-size: 115%;
+    text-decoration: none;
+    &:hover, &:active {
+      color: $green;
+      text-decoration: underline;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
 }

@@ -28,7 +28,7 @@
 
 #block-menu-menu-objectives {
   background: $higrey;
-  padding: 1em;
+  padding: 1em 1em 0 1em;
   margin-top: -1em;
   h2.block__title {
     font-size: $base-font-size;
@@ -36,7 +36,7 @@
     display: inline-block;
     float:left;
   }
-  ul { 
+  ul {
     padding: 0;
     margin: 0;
      li {
@@ -45,7 +45,7 @@
       float: left;
       a {
         display: block;
-        padding: 0 0 0 1em;
+        padding: 0 0 1em 1em;
         text-decoration: none;
       &:hover, &.active {
         text-decoration: underline;

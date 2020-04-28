@@ -114,7 +114,7 @@ $zen-auto-include-grid-item-base: false;
     margin: 0 20px;
     /* color: #333; */
     /* line-height: 1.5rem; */
-    clip-path: polygon(2% 50%, 0% 0%, 100% 0%, 98% 50%, 100% 100%, 0% 100%);
+    clip-path: polygon(1% 50%, 0% 0%, 100% 0%, 99% 50%, 100% 100%, 0% 100%);
   }
 }
   #flexslider-2 {
@@ -135,6 +135,23 @@ $zen-auto-include-grid-item-base: false;
       .media-float-right {
         float: left;
       }
+    }
+  }
+
+.content-bottom, .content-top { /* extends grid css */
+  padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .float-right-sm {
+      float: right;
+    }
+    .float-left-sm {
+      float: left;
     }
   }
 
@@ -379,7 +396,7 @@ $zen-auto-include-grid-item-base: false;
     .views-field-description {
         margin-left: 260px;
       }
-  .banner:before {
+/*  .banner:before {
     border-color: $khaki transparent;
     left: 0;
     border-width: 45px 0 45px 20px;
@@ -396,7 +413,7 @@ $zen-auto-include-grid-item-base: false;
     width: 0;
     border-style: solid;
     top: 0;
-  }
+  } */
     }
   .section-themes, .section-key-partner-countries {
    .preface img {
@@ -417,7 +434,7 @@ $zen-auto-include-grid-item-base: false;
        z-index: 2;
      }
      p {
-       margin-top: -3em;
+       /* margin-top: -3em; */
      }
    }
 
@@ -612,5 +629,14 @@ $zen-auto-include-grid-item-base: false;
   }
 }
 }
+
+  .float-right-lg {
+    float: right;
+    margin: 0 0 20px 20px;
+  }
+  .float-left-lg {
+    float: left;
+    margin: 0 20px 20px 0;
+  }
 
 }
