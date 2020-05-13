@@ -366,6 +366,15 @@ $zen-auto-include-grid-item-base: false;
   min-height: 175px;
  }
 
+ .view-mode-highlighted {
+   .field-type-image, .field-name-cover-highlighted {
+     img {
+       margin: 15px;
+     }
+   }
+ }
+
+
   .highlighted, .node-two-columns {
     &.ds-2col-fluid > .group-right,
     &.ds-2col-fluid > .group-left,
