@@ -101,14 +101,15 @@ blockquote {
   }
 }
 
-.section-in-country {
-  #block-views-key-partner-country-block-3 {
+.section-in-country #block-views-key-partner-country-block-3,
+#block-views-home-block-1 {
     background: $higrey;
     padding: 1em 1em 0 1em;
     .views-row {
       background: $page;
       padding: 1em;
       margin: 1em 0;
+      overflow: auto;
       .node-blog {
         cursor: pointer;
           h4 {
@@ -121,7 +122,7 @@ blockquote {
       .field-name-title h4 {
         margin-top: 0;
       }
-      .field-type-image {
+      .field-type-image, .views-field-field-blog-image {
          float: left;
          margin: 0 10px 10px 0;
          width: 350px;
@@ -131,7 +132,10 @@ blockquote {
           }
       }
     }
-  }
+}
+
+#block-views-home-block-1 {
+  padding-bottom: 2em;
 }
 
 .section-objective {
@@ -240,7 +244,7 @@ ol.search-results {
   }
 
   .view-home .node-two-columns {
-    margin-bottom: 3em;
+    margin-bottom: 1em;
   }
 
 /* Home page and landing page views */
@@ -589,11 +593,7 @@ ol.search-results {
     border-right: none;
     border-bottom: none;
     padding: 0 0 0 10px;
-    margin-bottom: 3em;
-}
-
-.comment_forbidden {
-    visibility: hidden;
+    margin: 1em 0 3em 0;
 }
 
 /* Mailchimp sign up form */
