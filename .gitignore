@@ -5,3 +5,4 @@ docroot/sites/*/private
 
 # Ignore sass-cache directory
 .sass-cache/
+.DS_Store
