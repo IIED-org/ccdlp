@@ -8,7 +8,7 @@
  */
 ?>
 
-<div class="page">
+<div class="layout-center">
 
   <header class="header" role="banner">
 
@@ -50,12 +50,32 @@
 
   </header>
 
-  <div class="main">
+  <div class="layout-3col layout-swap">
 
-    <div class="main-content" role="main">
+    <?php
+      // Render the sidebars to see if there's anything in them.
+      $sidebar_first  = render($page['sidebar_first']);
+      $sidebar_second = render($page['sidebar_second']);
+      // Decide on layout classes by checking if sidebars have content.
+      $content_class = 'layout-3col__full';
+      $sidebar_first_class = $sidebar_second_class = '';
+      if ($sidebar_first && $sidebar_second):
+        $content_class = 'layout-3col__right-content';
+        $sidebar_first_class = 'layout-3col__first-left-sidebar';
+        $sidebar_second_class = 'layout-3col__second-left-sidebar';
+      elseif ($sidebar_second):
+        $content_class = 'layout-3col__left-content';
+        $sidebar_second_class = 'layout-3col__right-sidebar';
+      elseif ($sidebar_first):
+        $content_class = 'layout-3col__right-content';
+        $sidebar_first_class = 'layout-3col__left-sidebar';
+      endif;
+    ?>
+
+    <main class="<?php print $content_class; ?>" role="main">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
-      <a id="main-content"></a>
+      <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-content">Back to top</a>
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
         <h1><?php print $title; ?></h1>
@@ -69,12 +89,14 @@
       <?php endif; ?>
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
-    </div>
+    </main>
 
-    <div class="main-navigation">
+    <div class="layout-swap__top layout-3col__full">
+
+      <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-menu" tabindex="-1">Back to top</a>
 
       <?php if ($main_menu): ?>
-        <nav class="main-menu" role="navigation" id="main-menu" tabindex="-1">
+        <nav class="main-menu" role="navigation">
           <?php
           // This code snippet is hard to modify. We recommend turning off the
           // "Main menu" on your sub-theme's settings form, deleting this PHP
@@ -83,7 +105,7 @@
           print theme('links__system_main_menu', array(
             'links' => $main_menu,
             'attributes' => array(
-              'class' => array('links', 'inline', 'clearfix'),
+              'class' => array('navbar', 'clearfix'),
             ),
             'heading' => array(
               'text' => t('Main menu'),
@@ -98,15 +120,14 @@
 
     </div>
 
-    <?php
-      // Render the sidebars to see if there's anything in them.
-      $sidebar_first  = render($page['sidebar_first']);
-      $sidebar_second = render($page['sidebar_second']);
-    ?>
-
-    <?php if ($sidebar_first || $sidebar_second): ?>
-      <aside class="sidebars">
+    <?php if ($sidebar_first): ?>
+      <aside class="<?php print $sidebar_first_class; ?>" role="complementary">
         <?php print $sidebar_first; ?>
+      </aside>
+    <?php endif; ?>
+
+    <?php if ($sidebar_second): ?>
+      <aside class="<?php print $sidebar_second_class; ?>" role="complementary">
         <?php print $sidebar_second; ?>
       </aside>
     <?php endif; ?>
