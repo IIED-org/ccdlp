@@ -87,7 +87,7 @@ function fontawesome_libraries_info() {
       'js/solid.js',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_svg_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_svg_solid']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_svg_base',
   );
 
@@ -99,7 +99,7 @@ function fontawesome_libraries_info() {
       'js/regular.js',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_svg_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_svg_regular']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_svg_base',
   );
 
@@ -111,7 +111,7 @@ function fontawesome_libraries_info() {
       'js/light.js',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_svg_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_svg_light']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_svg_base',
   );
 
@@ -162,7 +162,7 @@ function fontawesome_libraries_info() {
       'css/solid.css',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_webfonts_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_webfonts_solid']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_webfonts_base',
   );
 
@@ -174,7 +174,7 @@ function fontawesome_libraries_info() {
       'css/regular.css',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_webfonts_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_webfonts_regular']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_webfonts_base',
   );
 
@@ -186,7 +186,7 @@ function fontawesome_libraries_info() {
       'css/light.css',
     ),
   );
-  $libraries[FONTAWESOME_LIBRARY . '_webfonts_brands']['dependencies'] = array(
+  $libraries[FONTAWESOME_LIBRARY . '_webfonts_light']['dependencies'] = array(
     FONTAWESOME_LIBRARY . '_webfonts_base',
   );
 
