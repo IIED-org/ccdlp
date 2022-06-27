@@ -1,0 +1,26 @@
+diff --git a/rate.admin.inc b/rate.admin.inc
+index 56a5c90..e80f958 100644
+--- a/rate.admin.inc
++++ b/rate.admin.inc
+@@ -859,7 +859,7 @@ function rate_settings_form_validate($form, &$form_state) {
+     $url = "http://botscout.com/test/?ip=84.16.230.111&key=" . $form_state['values'][RATE_VAR_BOT_BOTSCOUT_KEY];
+     $data = drupal_http_request($url, array('timeout' => 5));
+     if ($data->code == 200) {
+-      if ($data->data{0} == 'Y' || $data->data{0} == 'N') {
++      if (in_array(substr($data->data, 0, 1), ['Y', 'N'], TRUE)) {
+         drupal_set_message(t('Rate has succesfully contacted the BotScout server.'));
+       }
+       else {
+diff --git a/rate.bots.inc b/rate.bots.inc
+index f07fda0..ed8067d 100644
+--- a/rate.bots.inc
++++ b/rate.bots.inc
+@@ -130,7 +130,7 @@ function rate_bots_check_botscout($ip) {
+     $url = "http://botscout.com/test/?ip=$ip&key=$key";
+     $data = drupal_http_request($url, array('timeout' => 2));
+     if ($data->code == 200) {
+-      if ($data->data{0} == 'Y') {
++      if (substr($data->data, 0, 1) === 'Y') {
+         return TRUE;
+       }
+     }
