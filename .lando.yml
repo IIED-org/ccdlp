@@ -4,7 +4,8 @@ config:
   acli_version: latest
   ah_application_uuid: e0dd9324-ee18-43d3-8a42-9531897413f1
   ah_site_group: ccdlp
-  php: '8.0'
+  php: '8.1'
+  drush: '8.4.10'
 services:
   appserver:
     config:
@@ -13,3 +14,7 @@ services:
       environment:
         DRUSH_OPTIONS_ROOT: '/app/docroot'
         DRUSH_OPTIONS_URI: 'https://ccdlp.lndo.site'
+tooling:
+  drush:
+    service: appserver
+    cmd: drush --root=/app/docroot
