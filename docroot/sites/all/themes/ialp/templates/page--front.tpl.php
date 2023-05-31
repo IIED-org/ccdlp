@@ -10,7 +10,8 @@
 
 <div class="page">
 
-  <header class="header" role="banner">
+  <header class="header" id="top-nav" role="banner">
+    <div class="header-container">
 
   <?php print render($page['header']); ?>
   
@@ -48,6 +49,35 @@
       </nav>
     <?php endif; ?>
 
+
+    <div class="main-navigation">
+
+<?php if ($main_menu): ?>
+  <nav class="main-menu" role="navigation" id="main-menu" tabindex="-1">
+    <?php
+    // This code snippet is hard to modify. We recommend turning off the
+    // "Main menu" on your sub-theme's settings form, deleting this PHP
+    // code block, and, instead, using the "Menu block" module.
+    // @see https://drupal.org/project/menu_block
+    print theme('links__system_main_menu', array(
+      'links' => $main_menu,
+      'attributes' => array(
+        'class' => array('links', 'inline', 'clearfix'),
+      ),
+      'heading' => array(
+        'text' => t('Main menu'),
+        'level' => 'h2',
+        'class' => array('visually-hidden'),
+      ),
+    )); ?>
+  </nav>
+<?php endif; ?>
+
+<?php print render($page['navigation']); ?>
+
+</div>
+
+  </div>
   </header>
 
   <div class="main">
@@ -78,32 +108,7 @@
        <?php print $feed_icons; ?>
     </div>
   
-    <div class="main-navigation">
 
-      <?php if ($main_menu): ?>
-        <nav class="main-menu" role="navigation" id="main-menu" tabindex="-1">
-          <?php
-          // This code snippet is hard to modify. We recommend turning off the
-          // "Main menu" on your sub-theme's settings form, deleting this PHP
-          // code block, and, instead, using the "Menu block" module.
-          // @see https://drupal.org/project/menu_block
-          print theme('links__system_main_menu', array(
-            'links' => $main_menu,
-            'attributes' => array(
-              'class' => array('links', 'inline', 'clearfix'),
-            ),
-            'heading' => array(
-              'text' => t('Main menu'),
-              'level' => 'h2',
-              'class' => array('visually-hidden'),
-            ),
-          )); ?>
-        </nav>
-      <?php endif; ?>
-
-      <?php print render($page['navigation']); ?>
-
-    </div>
 
     <?php
       // Render the sidebars to see if there's anything in them.

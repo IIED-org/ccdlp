@@ -15,6 +15,9 @@
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
+  width: 150px;
+  min-width: 130px;
+  height: auto;
 }
 
 .header__logo-image {
@@ -53,9 +56,14 @@
 }
 
 h1.header__site-name {
-        font-size: 28px;
-        font-weight:100;
-        line-height: 1.75rem;
+        color: #2C55A2;
+        font-size: 14px;
+        font-weight:600;
+        line-height: 1rem;
+       
+        &.header__site-link {
+            color: #2C55A2;
+          }
     }
 
 /* The secondary menu (login, etc.) */
@@ -76,4 +84,16 @@ h1.header__site-name {
     display: inline-block;
     padding: 0 5px;
   }
+}
+
+/* Everything apart from smallest screens */
+@media all and (min-width: 480px) {
+
+h1.header__site-name {
+  color: #2C55A2;
+  font-size: 24px;
+  font-weight:600;
+  line-height: 1.75rem;
+ 
+}
 }

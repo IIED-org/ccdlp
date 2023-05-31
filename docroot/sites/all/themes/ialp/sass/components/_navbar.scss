@@ -34,17 +34,18 @@
        display: block;
        text-decoration: none;
        padding: 1em;
-       border-right: 1px solid $darkgreen;
+       font-size: 20px;
+       font-weight: 600;
 
        &:link,
        &:visited {
-         color: white;
+         color: $hiblue;
         }
        &:hover,
        &:active,
        &.active {
-         color: white;
-         background-color: $higreen;
+         color: $hiblue;
+         /* background-color: $higreen; */
        }
 
       }
@@ -62,4 +63,10 @@
 
 .logoright {
   float: right;
+}
+
+.region.region-navigation {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
 }

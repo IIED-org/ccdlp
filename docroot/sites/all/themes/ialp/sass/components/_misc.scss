@@ -438,12 +438,13 @@ ol.search-results {
 /* Footer logos */
 
 .footer {
-    background-color: $higrey;
+    background-color: $midgreen;
     padding-left: 0;
     padding-right: 0;
   .footer-top {
-    background-color: $khaki;
+    background-color: $ligreen;
     padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 6px -1px, rgba(0, 0, 0, 0.02) 0px 2px 4px -1px;
   }
   .footer-bottom {
       padding: 10px;
