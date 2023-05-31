@@ -6,7 +6,7 @@
 #block-block-133 {
   text-align: right;
   display: inline-block;
-  float: right;
+  /* float: right; */
    div, form {
      display: inline-block;
   }
@@ -29,19 +29,22 @@
      padding: 10px 10px 10px 10px;
      text-align: left;
      background-color: transparent;
+     border: 1px solid #ccc;
+    border-radius: 12px;
      &::placeholder {
-      content: "Quick search";
+      content: "Search resources";
       color: $higrey;
      }
    }
 
   #views-exposed-form-taxonomy-search-page-2 input.form-text  {
-        padding: 10px 10px 0 10px;
+        padding: 10px 10px 10px 10px;
   }
 
     .form-item-search-site  input#edit-search-site {
-     border: none;
-     border-bottom: 1px solid;
+      background: #ffffff;
+      border: none;
+    /* border-bottom: 1px solid; */
      }
      .form-item-search-site  input#edit-search-site:focus {
        outline: none;
@@ -71,7 +74,7 @@
 .page-taxonomy {
   .view-header {
     padding: 0 0 .5em 0;
-    border-bottom: 1px solid $grey;
+   border-bottom: 1px solid $grey;
   }
   .view-taxonomy-search .views-row {
     border-bottom: 1px solid $higrey;
@@ -88,11 +91,12 @@
 }
 
 #block-views-exp-taxonomy-search-page-2 {
-  border-bottom: 3px solid $green;
+  /* border-bottom: 1px solid $green; */
+  background: $higrey;
   display: none;
   margin: 0 0 1em 0;
   text-align: left;
-  padding: 0px 15px 20px 15px;
+  padding: 20px 15px 20px 15px;
   input.form-text  {
     width: 100%;
   }
@@ -106,17 +110,26 @@
 }
 
   #views-exposed-form-taxonomy-search-page-2 {
-.views-exposed-form {
-    display: flex;
-    padding: 0;
-    #edit-search-site-wrapper {
-    width: 85%;
-}
+    .views-exposed-form {
+        display: flex;
+        padding: 0;
+        #edit-search-site-wrapper {
+        width: 85%;
+    }
 }
 
-.views-exposed-form .views-exposed-widget .form-submit { /* views css override */
-    margin-top: 1rem;
+  .views-exposed-form .views-exposed-widget .form-submit { /* views css override */
+      margin-top: 1rem;
+  }
+
+  .views-exposed-widgets {
+      display: flex;
 }
+
+  .views-submit-button {
+    margin-left: -70px;
+  }
+
 }
 
 a#searchme:hover, a#searchme:active {

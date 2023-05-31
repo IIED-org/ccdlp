@@ -30,8 +30,11 @@ $zen-auto-include-grid-item-base: false;
  * For screen sizes larger than 1200px, prevent excessively long lines of text
  * by setting a max-width.
  */
-.page,
-.region-bottom {
+.main,
+.region-bottom,
+.container,
+.header-container,
+.region-content-bottom {
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
@@ -61,19 +64,24 @@ $zen-auto-include-grid-item-base: false;
 /* Mobile first! */
 
 .main-navigation {
-  position: absolute;
-  top: 4em;
-  height: $nav-height;
-  width: $zen-grid-width * .5;
+ /* position: absolute; */
+   /* top: 4em; */
+ /*  height: $nav-height; */
+  /* width: $zen-grid-width * .5; */
   text-align:right;
   right: 5px;
   background-color: transparent;
 }
 
-.header__name-and-slogan {
+/* .header__name-and-slogan {
   float: left;
-}
+} */
 
+#top-nav {
+  border-bottom: 2px solid $green;
+  background: rgb(246,248,249);
+  background: radial-gradient(circle, rgba(246,248,249,1) 0%, rgba(255,255,255,1) 90%);
+}
 
 .buttons div {
   	width: 36%;
@@ -93,6 +101,7 @@ $zen-auto-include-grid-item-base: false;
    display: inline-block;
    max-width: 80%;
    padding-left: 1em;
+   border-right: 1px solid #8CBBA3;
  }
 
 .preface {
@@ -116,7 +125,20 @@ $zen-auto-include-grid-item-base: false;
     /* line-height: 1.5rem; */
     clip-path: polygon(1% 50%, 0% 0%, 100% 0%, 99% 50%, 100% 100%, 0% 100%);
   }
+
+  .home-text {
+    margin: auto;
+    font-size: x-large;
+    font-weight: 400;
+    color: $green;
+    text-align: center;
+    line-height: 39px;
+    padding: 50px 10px;
+  }
 }
+
+
+
   #flexslider-2 {
     left: 0;
     margin-top: 0;
@@ -146,6 +168,7 @@ $zen-auto-include-grid-item-base: false;
       box-sizing: border-box;
   }
 
+
   @media (max-width: 768px) {
     .float-right-sm {
       float: right;
@@ -164,10 +187,10 @@ $zen-auto-include-grid-item-base: false;
 
   #block-custom-search-blocks-1,
   #block-block-133 {
-    margin-top: -1em;
+    /* margin-top: -1em; */
      input#edit-submit,
-     .search-button img {
-       margin: .75em;
+     .search-button {
+       margin: 1em 0 1em 1em;
      }
       input#edit-custom-search-blocks-form-1--2 {
         width: 8em;
@@ -178,21 +201,28 @@ $zen-auto-include-grid-item-base: false;
 
   .main {
     /* Move all the children of .main down to make room. */
-    padding-top: $nav-height;
+   /* padding-top: $nav-height; */
     position: relative;
   }
   .main-navigation {
     /* Move the navbar up inside .main's padding. */
-    top: 0;
-    right: 0;
+   /* top: 128px; */
+     /*   right: 0; */
 	  text-align: left;
-    background-color: $green;
-    width: $zen-grid-width
+   /*  background-color: $green; */
+    margin-left: auto;
+   /* width: $zen-grid-width */
   }
 
-  .header__name-and-slogan {
-    float: none;
+     /* .header__name-and-slogan {
+float: none;
     margin-top: 2.5em;
+  } */
+
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
   }
 
 }
@@ -374,6 +404,10 @@ $zen-auto-include-grid-item-base: false;
    }
  }
 
+ .home-text {
+  width: 75%;
+  padding: 50px;
+ }
 
   .highlighted, .node-two-columns {
     &.ds-2col-fluid > .group-right,
@@ -649,3 +683,5 @@ $zen-auto-include-grid-item-base: false;
   }
 
 }
+
+
